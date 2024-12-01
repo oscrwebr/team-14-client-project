@@ -80,4 +80,10 @@ document.addEventListener("DOMContentLoaded", function() {
                 row.style.display = "none";
             }
         }
-    }});
+    }
+    //search bar
+
+    document.getElementById("searchBar").addEventListener("keyup", searchFunction);
+
+
+});

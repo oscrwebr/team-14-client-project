@@ -15,12 +15,34 @@
         }
         /*]]>*/
     </script>
+    <script>
+        function searchFunction() {
+            var input, filter, table, tr, td, i, txtValue;
+            input = document.getElementById("searchBar");
+            filter = input.value.toUpperCase();
+            table = document.getElementById("table1");
+            tr = table.getElementsByTagName("tr");
+            for (i = 0; i < tr.length; i++) {
+                tdFirstName = tr[i].getElementsByTagName("td")[0];
+                tdLastName = tr[i].getElementsByTagName("td")[1];
+                if (tdFirstName || tdLastName) {
+                    txtValueFirstName = tdFirstName ? tdFirstName.textContent : "";
+                    txtValueLastName = tdLastName ? tdLastName.textContent : "";
+                    if (txtValueFirstName.toUpperCase().indexOf(filter) > -1 || txtValueLastName.toUpperCase().indexOf(filter) > -1) {
+                        tr[i].style.display = "";
+                    } else {
+                        tr[i].style.display = "none";
+                    }
+                }
+            }
+        }
+    </script>
 
 </head>
 <body>
 
     <div th:replace="~{fragments/header :: header}"/>
-    <h1> this is the profile page</h1>
+    <input type="text" id="searchBar" onkeyup="searchFunction()" placeholder="Input name">
     <form th:if="${profile != null}" th:action="@{/profile/sendEmail/{userID}(userID=${profile.getId()})}" method="post" onsubmit="showAlert()">
         <button type="submit"> Email <span th:text="${userId}"></span></button>
     </form>
