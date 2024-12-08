@@ -93,6 +93,11 @@ public class AdminRepositoryImpl implements AdminRepository {
     // Method to delete a user by ID
     @Override
     public void deleteUserById(int ID) {
+        String insertSql = "INSERT INTO deletedUsers (ID, username, passwordHashed, firstName, lastName, role, lastLogin, createdAt) " +
+                "SELECT ID, username, passwordHashed, firstName, lastName, role, lastLogin, createdAt " +
+                "FROM users WHERE ID = ?";
+        jdbcTemplate.update(insertSql, ID);
+
         String sql = "DELETE FROM users WHERE ID = ?";
         jdbcTemplate.update(sql, ID);
     }

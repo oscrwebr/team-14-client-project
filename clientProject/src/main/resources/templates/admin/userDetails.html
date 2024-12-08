@@ -4,6 +4,13 @@
     <meta charset="UTF-8">
     <title>User Details</title>
     <link th:replace="~{fragments/header :: bootstrap-css}"/>
+    <script>
+        function confirmDelete() {
+            if (confirm('Are you sure you want to delete this user?')) {
+                document.getElementById('deleteForm').submit();
+            }
+        }
+    </script>
 </head>
 <body>
 <div th:replace="~{fragments/header :: header}"></div>
@@ -18,8 +25,7 @@
     <p><strong>Last Login:</strong> <span th:text="${user.lastLogin}"></span></p>
     <p><strong>Created At:</strong> <span th:text="${user.createdAt}"></span></p>
     <form th:action="@{/admin/user/delete/{id}(id=${user.id})}" method="post" style="display:inline;">
-        <button type="submit" class="btn btn-danger">Delete</button>
-    </form>
+        <button type="submit" class="btn btn-danger" onclick="confirmDelete()">Delete</button>    </form>
     <a th:href="@{/admin}" class="btn btn-secondary">Back to List</a>
 </div>
 <div th:replace="~{fragments/footer :: footer-links}"></div>
