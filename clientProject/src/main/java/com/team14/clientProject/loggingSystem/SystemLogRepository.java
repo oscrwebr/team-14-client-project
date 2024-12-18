@@ -6,4 +6,6 @@ public interface SystemLogRepository {
     List<SystemLog> getLogs();
     void addUserLog();
     void removeUserLog(int UserId);
+    void loginUser(int UserId);
+    void logoutUser(int UserId);
 }

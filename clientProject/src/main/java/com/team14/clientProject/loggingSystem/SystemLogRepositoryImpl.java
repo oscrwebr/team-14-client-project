@@ -43,4 +43,15 @@ public class SystemLogRepositoryImpl implements SystemLogRepository {
         String sql = "INSERT INTO systemLogs (userId, actionTaken) VALUES (?, 'removedUser')";
         jdbcTemplate.update(sql, UserID);
     }
+    @Override
+    public void loginUser(int UserID) {
+        System.out.println("Logging in user");
+        String sql = "INSERT INTO systemLogs (userId, actionTaken) VALUES (?, 'login')";
+        jdbcTemplate.update(sql, UserID);
+    }
+    @Override
+    public void logoutUser(int UserID) {
+        String sql = "INSERT INTO systemLogs (userId, actionTaken) VALUES (?, 'logout')";
+        jdbcTemplate.update(sql, UserID);
+    }
 }

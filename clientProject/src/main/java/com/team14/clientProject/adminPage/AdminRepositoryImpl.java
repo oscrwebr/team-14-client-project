@@ -101,4 +101,13 @@ public class AdminRepositoryImpl implements AdminRepository {
         String sql = "DELETE FROM users WHERE ID = ?";
         jdbcTemplate.update(sql, ID);
     }
+    @Override
+    public User findByUsername(String username) {
+        String sql = "SELECT * FROM users WHERE username = ?";
+        try {
+            return jdbcTemplate.queryForObject(sql, userMapper, username);
+        } catch (EmptyResultDataAccessException e) {
+            return null;
+        }
+    }
 }
