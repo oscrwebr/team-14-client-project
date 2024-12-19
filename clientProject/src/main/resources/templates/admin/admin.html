@@ -12,6 +12,8 @@
         <button>
                 <a th:href="@{/admin/add}" class="admin-new-user" th:text="#{admin.page.addUser}"></a>
         </button>
+        <div th:if="${success}" class="alert alert-success" th:text="${success}"></div>
+        <div th:if="${error}" class="alert alert-danger" th:text="${error}"></div>
         <table class="table-content">
             <thead>
             <tr>
