@@ -5,23 +5,23 @@ insert into users (username, passwordHashed, firstName, lastName, role, lastLogi
 values
     ('admin', '$2a$12$diNTM8P5VDcw7jQ7bETrBOpkRNgTnHYp6BNM/Ea0OnzdQTBWLjD6G', 'Alice', 'Johnson', 'ROLE_ADMIN', NOW()),
     ('user', '$2a$12$diNTM8P5VDcw7jQ7bETrBOpkRNgTnHYp6BNM/Ea0OnzdQTBWLjD6G', 'Alice', 'Johnson', 'ROLE_USER', NOW()),
-    ('user2', SHA2('password2', 256), 'Bob', 'Smith', 'ROLE_USER', NOW()),
-    ('user3', SHA2('password3', 256), 'Carol', 'Williams', 'ROLE_USER', NOW()),
-    ('user4', SHA2('password4', 256), 'David', 'Brown', 'ROLE_USER', NOW()),
-    ('user5', SHA2('password5', 256), 'Eve', 'Davis', 'ROLE_USER', NOW()),
-    ('user6', SHA2('password6', 256), 'Frank', 'Miller', 'ROLE_USER', NOW()),
-    ('user7', SHA2('password7', 256), 'Grace', 'Wilson', 'ROLE_USER', NOW()),
-    ('user8', SHA2('password8', 256), 'Henry', 'Moore', 'ROLE_USER', NOW()),
-    ('user9', SHA2('password9', 256), 'Ivy', 'Taylor', 'ROLE_USER', NOW()),
-    ('user10', SHA2('password10', 256), 'Jack', 'Anderson', 'ROLE_USER', NOW());
+    ('user2', '$2a$12$diNTM8P5VDcw7jQ7bETrBOpkRNgTnHYp6BNM/Ea0OnzdQTBWLjD6G', 'Bob', 'Smith', 'ROLE_USER', NOW()),
+    ('user3', '$2a$12$diNTM8P5VDcw7jQ7bETrBOpkRNgTnHYp6BNM/Ea0OnzdQTBWLjD6G', 'Carol', 'Williams', 'ROLE_USER', NOW()),
+    ('user4', '$2a$12$diNTM8P5VDcw7jQ7bETrBOpkRNgTnHYp6BNM/Ea0OnzdQTBWLjD6G', 'David', 'Brown', 'ROLE_USER', NOW()),
+    ('user5', '$2a$12$diNTM8P5VDcw7jQ7bETrBOpkRNgTnHYp6BNM/Ea0OnzdQTBWLjD6G', 'Eve', 'Davis', 'ROLE_USER', NOW()),
+    ('user6', '$2a$12$diNTM8P5VDcw7jQ7bETrBOpkRNgTnHYp6BNM/Ea0OnzdQTBWLjD6G', 'Frank', 'Miller', 'ROLE_USER', NOW()),
+    ('user7', '$2a$12$diNTM8P5VDcw7jQ7bETrBOpkRNgTnHYp6BNM/Ea0OnzdQTBWLjD6G', 'Grace', 'Wilson', 'ROLE_USER', NOW()),
+    ('user8', '$2a$12$diNTM8P5VDcw7jQ7bETrBOpkRNgTnHYp6BNM/Ea0OnzdQTBWLjD6G', 'Henry', 'Moore', 'ROLE_USER', NOW()),
+    ('user9', '$2a$12$diNTM8P5VDcw7jQ7bETrBOpkRNgTnHYp6BNM/Ea0OnzdQTBWLjD6G', 'Ivy', 'Taylor', 'ROLE_USER', NOW()),
+    ('user10', '$2a$12$diNTM8P5VDcw7jQ7bETrBOpkRNgTnHYp6BNM/Ea0OnzdQTBWLjD6G', 'Jack', 'Anderson', 'ROLE_USER', NOW());
 
 
 -- Populate the Applicants table with NHS-related data
 insert into applicants (firstName, lastName, location, email, phoneNumber, eventAttended, skill)
 values
-    ('Sarah', 'Connor', 'Cardiff', 'kirill.akbulatov@pm.me', '1234567890', 'NHS Careers Fair', 'Healthcare, Nursing'),
-    ('John', 'Doe', 'Swansea', 'kirill.spam1@gmail.com', '2345678901', 'NHS Recruitment Day', 'Healthcare, Public Health'),
-    ('Jane', 'Smith', 'Newport', 'ayushyj04@gmail.com', '3456789012', 'Health Conference', 'Nursing, Midwifery'),
+    ('Sarah', 'Connor', 'Cardiff', 'sbo753130@gmail.com', '1234567890', 'NHS Careers Fair', 'Healthcare, Nursing'),
+    ('John', 'Doe', 'Swansea', 'bolajim88@gmail.com', '2345678901', 'NHS Recruitment Day', 'Healthcare, Public Health'),
+    ('Jane', 'Smith', 'Newport', 'bolajim66@gmail.com', '3456789012', 'Health Conference', 'Nursing, Midwifery'),
     ('Mike', 'Ross', 'Wrexham', 'mross|@example.com', '4567890123', 'NHS Recruitment', 'Clinical Research, Pharmacy'),
     ('Emily', 'Blunt', 'Bangor', '', '5678901234', 'Health Conference', 'Physiotherapy, Occupational Therapy'),
     ('Chris', 'Evans', 'Llandudno', 'cevans@example.com', '6789012345', 'NHS Careers Fair', 'Healthcare, Radiology'),

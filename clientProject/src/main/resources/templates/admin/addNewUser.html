@@ -5,13 +5,28 @@
     <title>Add New User</title>
     <link th:replace="~{fragments/header :: bootstrap-css}"/>
     <link rel="stylesheet" href="/css/admin.css">
+    <script>
+        function displaySuccessMessage() {
+            const messageContainer = document.createElement("h1");
+            messageContainer.className = "success-message";
+
+            messageContainer.innerText = `User "${userName}" has been added successfully!`;
+
+            document.body.appendChild(messageContainer);
+
+            // Automatically remove the message after 3 seconds
+            setTimeout(() => {
+                document.body.removeChild(messageContainer);
+            }, 3000);
+        }
+    </script>
 </head>
 <body>
 <div th:replace="~{fragments/header :: header}"></div>
 <div class="addNewUsers-Container">
     <main class="addNewUsers-wrapper">
         <h1 class="addNewUsers-header-1" th:text="#{add.user.title}"></h1>
-        <form th:action="@{/admin/add}" th:object="${user}" th:method="post" class="addNewUsers-form-group">
+        <form th:action="@{/admin/add}" th:object="${user}" th:method="post" class="addNewUsers-form-group" onsubmit="displaySuccessMessage">
             <div class="addNewUsers-form-group">
                 <label for="firstName" class="addNewUsers-label" th:text="#{add.user.firstName}"> </label>
                 <input type="text" id="firstName" th:field="*{firstName}" class="addNewUsers-input" required>

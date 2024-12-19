@@ -20,7 +20,7 @@ public class EmailServiceImpl implements EmailService {
     public void sendHtmlMessageWithLogo(String to, String subject, String htmlBody, String logoPath) throws MessagingException {
         MimeMessage message = emailSender.createMimeMessage();
         MimeMessageHelper helper = new MimeMessageHelper(message, true);
-        helper.setFrom("kirill.akbulatov@gmail.com");
+        helper.setFrom("sbo753130@gmail.com");
         helper.setTo(to);
         helper.setSubject(subject);
         helper.setText(htmlBody, true);
@@ -33,7 +33,7 @@ public class EmailServiceImpl implements EmailService {
     public void sendHtmlMessageWithAttachment(String to, String subject, String htmlBody, byte[] pdfAttachment) throws MessagingException {
         MimeMessage message = emailSender.createMimeMessage();
         MimeMessageHelper helper = new MimeMessageHelper(message, true);
-        helper.setFrom("kirill.akbulatov@gmail.com");
+        helper.setFrom("sbo753130@gmail.com");
         helper.setTo(to);
         helper.setSubject(subject);
         helper.setText(htmlBody, true);
