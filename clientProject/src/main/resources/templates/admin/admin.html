@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns="http://www.w3.org/1999/html">
 <head>
     <meta charset="UTF-8">
     <title>Admin Page</title>
@@ -66,6 +66,31 @@
             <td th:if="${log instanceof T(com.team14.clientProject.loggingSystem.CommunicationLog)}" th:text="${log.getNotes()}"></td>
             <td th:unless="${log instanceof T(com.team14.clientProject.loggingSystem.CommunicationLog)}"></td>
             <td th:text="${log.getTimestamp()}"></td>
+        </tr>
+
+        </tbody>
+    </table>
+</div>
+<br><br>
+<div class = "log">
+    <table class="logTable">
+        <thead>
+        <tr>
+            <th th:text="#{admin.page.logType}">Log type</th>
+            <th th:text="#{admin.page.logId}">Log Id</th>
+            <th th:text="#{admin.page.UserId}">User Id</th>
+            <th th:text="#{admin.page.Time}">Time</th>
+            <th th:text="#{admin.page.action}">Action</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr class="logs" th:each="systemLog : ${systemLogs}">
+            <td class="SystemLogs" th:text="System"></td>
+            <td th:text="${systemLog.getLogId()}"></td>
+            <td th:text="${systemLog.getUserId()}"></td>
+            <td th:text="${systemLog.getTimestamp()}"></td>
+            <td>
+                <a th:href="@{/admin/session/user/{id}/{logoutTime}(id=${systemLog.getUserId()}, logoutTime=${systemLog.timestamp})}" class="btn btn-primary" th:text="#{admin.page.viewDetails}"></a>            </td>
         </tr>
 
         </tbody>

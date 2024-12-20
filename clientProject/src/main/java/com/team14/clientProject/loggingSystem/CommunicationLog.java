@@ -3,7 +3,7 @@ package com.team14.clientProject.loggingSystem;
 public class CommunicationLog {
     private int logId;
     private int applicantId;
-    private int userId;
+    private String userId;
     private String timestamp;
     private String userType;
     private String logType;
@@ -11,7 +11,7 @@ public class CommunicationLog {
     private String actionTaken;
     private String notes;
 
-    public CommunicationLog(int logId, int applicantId, int userId, String timestamp, String userType, String logType, String communicationType, String actionTaken, String notes) {
+    public CommunicationLog(int logId, int applicantId, String userId, String timestamp, String userType, String logType, String communicationType, String actionTaken, String notes) {
         this.logId = logId;
         this.applicantId = applicantId;
         this.userId = userId;
@@ -31,7 +31,7 @@ public class CommunicationLog {
         return applicantId;
     }
 
-    public int getUserId() {
+    public String getUserId() {
         return userId;
     }
 

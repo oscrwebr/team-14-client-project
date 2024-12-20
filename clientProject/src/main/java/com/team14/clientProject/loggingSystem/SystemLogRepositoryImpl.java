@@ -53,5 +53,21 @@ public class SystemLogRepositoryImpl implements SystemLogRepository {
     public void logoutUser(int UserID) {
         String sql = "INSERT INTO systemLogs (userId, actionTaken) VALUES (?, 'logout')";
         jdbcTemplate.update(sql, UserID);
+
+    }
+    @Override
+    public List<SystemLog> getWhenUserLoggedIn(int UserID, String logoutTime) {
+        String sql = "SELECT * FROM systemLogs WHERE userId = ? AND timestamp < ? AND actionTaken = 'login' ORDER BY timestamp DESC";
+        return jdbcTemplate.query(sql, SystemLogMapper, UserID, logoutTime);
+    }
+    @Override
+    public List<SystemLog> getLogoutLogs() {
+        String sql = "SELECT * FROM systemLogs WHERE actionTaken = 'logout' ORDER BY timestamp DESC";
+        return jdbcTemplate.query(sql, SystemLogMapper);
+    }
+    @Override
+    public List<SystemLog> getSessionLogs(int userId, String loginTime, String logoutTime) {
+        String sql = "SELECT * FROM systemLogs WHERE userId = ? AND timestamp >= ? AND timestamp <= ? ORDER BY timestamp DESC";
+        return jdbcTemplate.query(sql, SystemLogMapper, userId, loginTime, logoutTime);
     }
 }

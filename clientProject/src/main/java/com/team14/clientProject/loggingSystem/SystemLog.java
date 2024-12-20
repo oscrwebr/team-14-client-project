@@ -1,5 +1,7 @@
 package com.team14.clientProject.loggingSystem;
 
+import java.util.List;
+
 public class SystemLog {
     private int systemLogId;
     private int userId;
@@ -27,4 +29,5 @@ public class SystemLog {
     public String getTimestamp() {
         return timestamp;
     }
+
 }

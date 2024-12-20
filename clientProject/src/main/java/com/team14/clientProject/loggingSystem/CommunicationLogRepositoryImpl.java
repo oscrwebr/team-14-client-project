@@ -1,5 +1,6 @@
 package com.team14.clientProject.loggingSystem;
 
+import com.team14.clientProject.loginPage.SecurityConfig;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
@@ -19,7 +20,7 @@ public class CommunicationLogRepositoryImpl implements CommunicationLogRepositor
         CommunicationLogMapper = (rs, rowNum) -> {
             return new CommunicationLog(rs.getInt("logId"),
                     rs.getInt("applicantId"),
-                    rs.getInt("userId"),
+                    rs.getString("userId"),
                     rs.getString("timestamp"),
                     rs.getString("userType"),
                     rs.getString("logType"),
@@ -38,31 +39,42 @@ public class CommunicationLogRepositoryImpl implements CommunicationLogRepositor
     public void addEmailLog(List<String> thisApplicantId, String emailContent){
         for (String applicantId : thisApplicantId) {
             int applicantIdInt = Integer.parseInt(applicantId);
-            String sql = "INSERT INTO communicationlogs (applicantId, actionTaken, notes) VALUES (?, 'emailSent', ?)";
-            jdbcTemplate.update(sql, applicantIdInt, emailContent);
+            String sql = "INSERT INTO communicationlogs (userId, applicantId, actionTaken, notes) VALUES (?,?, 'emailSent', ?)";
+            jdbcTemplate.update(sql, getUserIdFromUsername(SecurityConfig.getCurrentUserId()), applicantIdInt, emailContent);
         }
     }
     @Override
     public void addApplicantLog(){
-        String sql = "INSERT INTO communicationLogs (applicantId, actionTaken, notes) VALUES ((SELECT Max(Id) FROM applicants), 'applicantAdded', 'Applicant added to the system')";
-        jdbcTemplate.update(sql);
+        String sql = "INSERT INTO communicationLogs (userId, applicantId, actionTaken, notes) VALUES (?, (SELECT Max(Id) FROM applicants), 'applicantAdded', 'Applicant added to the system')";
+        jdbcTemplate.update(sql, getUserIdFromUsername(SecurityConfig.getCurrentUserId()));
     }
 
     @Override
     public List<CommunicationLog> getLogsByApplicantId(int applicantId){
+        System.out.println(applicantId);
         String sql = "SELECT DISTINCT * FROM communicationlogs WHERE applicantId LIKE ? ORDER BY timestamp DESC";
         return jdbcTemplate.query(sql, CommunicationLogMapper, applicantId);
     }
 
     @Override
     public void editApplicantLog(int applicantId){
-        String sql = "INSERT INTO communicationLogs (applicantId, actionTaken, notes) VALUES (?, 'applicantDetailsChanged', 'Applicant details edited')";
-        jdbcTemplate.update(sql, applicantId);
+        String sql = "INSERT INTO communicationLogs (userId, applicantId, actionTaken, notes) VALUES (?, ?, 'applicantDetailsChanged', 'Applicant details edited')";
+        jdbcTemplate.update(sql, getUserIdFromUsername(SecurityConfig.getCurrentUserId()), applicantId);
     }
     @Override
     public void deleteApplicantLog(int applicantId){
-        String sql = "INSERT INTO communicationLogs (applicantId, actionTaken, notes) VALUES (?, 'applicantRemoved', 'Applicant deleted from the system')";
-        jdbcTemplate.update(sql, applicantId);
+        System.out.println(SecurityConfig.getCurrentUserId());
+        String sql = "INSERT INTO communicationLogs (userId, applicantId, actionTaken, notes) VALUES (?, ?, 'applicantRemoved', 'Applicant deleted from the system')";
+        jdbcTemplate.update(sql, getUserIdFromUsername(SecurityConfig.getCurrentUserId()),applicantId);
+    }
+    @Override
+    public List<CommunicationLog> getLogsBySession(int userId, String loginTimestamp, String logoutTimestamp){
+        String sql = "SELECT * FROM communicationlogs WHERE userId = ? AND timestamp >= ? AND timestamp <= ? ORDER BY timestamp DESC";
+        return jdbcTemplate.query(sql, CommunicationLogMapper, userId, loginTimestamp, logoutTimestamp);
+    }
+    private int getUserIdFromUsername(String username){
+        String sql = "SELECT ID FROM users WHERE username = ?";
+        return jdbcTemplate.queryForObject(sql, Integer.class, username);
     }
 
 }
