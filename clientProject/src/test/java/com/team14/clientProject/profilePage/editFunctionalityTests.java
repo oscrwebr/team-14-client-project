@@ -4,6 +4,7 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.MvcResult;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
@@ -40,6 +41,7 @@ public class editFunctionalityTests {
     }
 
     @Test
+    @WithMockUser(username = "admin", roles = "ADMIN")
     public void testEditFirstName() throws Exception {
         Mvc = MockMvcBuilders.webAppContextSetup(webApplicationContext).build();
 
@@ -63,6 +65,7 @@ public class editFunctionalityTests {
     }
 
     @Test
+    @WithMockUser(username = "admin", roles = "ADMIN")
     public void testEditSubscribeToBulletins() throws Exception {
         Mvc = MockMvcBuilders.webAppContextSetup(webApplicationContext).build();
 

@@ -1,5 +1,6 @@
 package com.team14.clientProject.loggingSystem;
 
+import com.team14.clientProject.loginPage.SecurityConfig;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
@@ -34,20 +35,20 @@ public class SystemLogRepositoryImpl implements SystemLogRepository {
 
     @Override
     public void addUserLog() {
-        String sql = "INSERT INTO systemLogs (userId, actionTaken) VALUES ((SELECT MAX(ID) FROM users), 'addedUser')";
-        jdbcTemplate.update(sql);
+        String sql = "INSERT INTO systemLogs (userId, actionTaken) VALUES (?, 'addedUser')";
+        jdbcTemplate.update(sql, getUserIdFromUsername(SecurityConfig.getCurrentUserId()));
     }
 
     @Override
     public void removeUserLog(int UserID) {
         String sql = "INSERT INTO systemLogs (userId, actionTaken) VALUES (?, 'removedUser')";
-        jdbcTemplate.update(sql, UserID);
+        jdbcTemplate.update(sql, getUserIdFromUsername(SecurityConfig.getCurrentUserId()));
     }
     @Override
     public void loginUser(int UserID) {
         System.out.println("Logging in user");
         String sql = "INSERT INTO systemLogs (userId, actionTaken) VALUES (?, 'login')";
-        jdbcTemplate.update(sql, UserID);
+        jdbcTemplate.update(sql, getUserIdFromUsername(SecurityConfig.getCurrentUserId()));
     }
     @Override
     public void logoutUser(int UserID) {
@@ -69,5 +70,9 @@ public class SystemLogRepositoryImpl implements SystemLogRepository {
     public List<SystemLog> getSessionLogs(int userId, String loginTime, String logoutTime) {
         String sql = "SELECT * FROM systemLogs WHERE userId = ? AND timestamp >= ? AND timestamp <= ? ORDER BY timestamp DESC";
         return jdbcTemplate.query(sql, SystemLogMapper, userId, loginTime, logoutTime);
+    }
+    private int getUserIdFromUsername(String username){
+        String sql = "SELECT ID FROM users WHERE username = ?";
+        return jdbcTemplate.queryForObject(sql, Integer.class, username);
     }
 }

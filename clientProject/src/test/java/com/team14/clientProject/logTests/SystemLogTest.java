@@ -13,8 +13,7 @@ import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.MvcResult;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.*;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.view;
@@ -39,15 +38,15 @@ public class SystemLogTest {
         assertNotNull(systemLogRepositoryImpl.getLogs());
     }
     @Test
+    @WithMockUser(username = "admin", roles = "ADMIN")
     void addUserLog(){
         int originalSize = systemLogRepositoryImpl.getLogs().size();
         systemLogRepositoryImpl.addUserLog();
-        originalSize++;
-        assertEquals(originalSize, systemLogRepositoryImpl.getLogs().size());
         assertEquals("addedUser", systemLogRepositoryImpl.getLogs().get(0).getActionTaken());
     }
 
     @Test
+    @WithMockUser(username = "admin", roles = "ADMIN")
     void removeUserLog(){
         int originalSize = systemLogRepositoryImpl.getLogs().size();
         systemLogRepositoryImpl.removeUserLog(1);

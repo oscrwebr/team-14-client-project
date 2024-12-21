@@ -9,5 +9,6 @@ public interface CommunicationLogRepository {
     void editApplicantLog(int applicantId);
     void deleteApplicantLog(int applicantId);
     List<CommunicationLog> getLogsBySession(int userId, String loginTimestamp, String logoutTimestamp);
+    void clearLogs();
 }
 

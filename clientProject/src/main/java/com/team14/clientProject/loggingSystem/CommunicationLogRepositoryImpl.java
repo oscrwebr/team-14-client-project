@@ -76,5 +76,10 @@ public class CommunicationLogRepositoryImpl implements CommunicationLogRepositor
         String sql = "SELECT ID FROM users WHERE username = ?";
         return jdbcTemplate.queryForObject(sql, Integer.class, username);
     }
+    @Override
+    public void clearLogs(){
+        String sql = "DELETE FROM communicationlogs";
+        jdbcTemplate.update(sql);
+    }
 
 }

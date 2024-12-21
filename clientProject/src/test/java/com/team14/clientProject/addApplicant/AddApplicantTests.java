@@ -35,6 +35,7 @@ public class AddApplicantTests {
     private MockMvc mvc;
 
     @Test
+    @WithMockUser(username = "admin", roles = "ADMIN")
     // Database is configured to always have 87 applicants when running the application
     public void shouldGetEightyEightApplicantsAfterAddingAnApplicant() throws Exception {
         // Arrange
