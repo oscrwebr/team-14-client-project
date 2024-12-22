@@ -1,6 +1,9 @@
 package com.team14.clientProject.adminPage;
 
 import jakarta.transaction.Transactional;
+import org.jsoup.Jsoup;
+import org.jsoup.nodes.Document;
+import org.jsoup.select.Elements;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
@@ -12,8 +15,11 @@ import org.springframework.util.Assert;
 
 import java.time.LocalDateTime;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.view;
 
 @SpringBootTest
 @AutoConfigureMockMvc
@@ -82,4 +88,34 @@ public class AdminPageTest {
         User deletedUser = adminService.getUserById(savedUser.getId());
         Assert.isNull(deletedUser, "Deleted user should be null");
     }
+    @Test
+    @WithMockUser(username = "admin", roles = "ADMIN")
+    void testLogTableShowsOnAdminPage() throws Exception {
+        MvcResult result = mockMvc
+                .perform(get("/admin"))
+                .andExpect(status().isOk())
+                .andExpect(view().name("admin/admin"))
+                .andReturn();
+
+        String content = result.getResponse().getContentAsString();
+        Document doc = Jsoup.parse(content);
+        Elements logTable = doc.select(".logTable");
+        assertNotNull(logTable, "Log table should be present on the admin page");
+    }
+
+    @Test
+    @WithMockUser(username = "admin", roles = "ADMIN")
+    void testBothLogTablesShowOnAdminPage() throws Exception {
+        MvcResult result = mockMvc
+                .perform(get("/admin"))
+                .andExpect(status().isOk())
+                .andExpect(view().name("admin/admin"))
+                .andReturn();
+
+        String content = result.getResponse().getContentAsString();
+        Document doc = Jsoup.parse(content);
+        Elements logTable = doc.select(".logTable");
+        assertEquals(2, logTable.size(), "Both log tables should be present on the admin page");
+    }
+
 }

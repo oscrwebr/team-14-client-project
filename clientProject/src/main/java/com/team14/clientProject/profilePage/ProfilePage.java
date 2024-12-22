@@ -62,21 +62,22 @@ public class ProfilePage {
         return modelAndView;
     }
 
-    @GetMapping("/{userId}")
-    public ModelAndView profilePage(@PathVariable Integer userId) {
+    @GetMapping("/{applicantId}")
+    public ModelAndView profilePage(@PathVariable Integer applicantId) {
         ModelAndView modelAndView = new ModelAndView("profilePage");
-        if (this.profilePageRepository.getProfileById(userId) == null) {
+        if (this.profilePageRepository.getProfileById(applicantId) == null) {
             //throw new ResponseStatusException(org.springframework.http.HttpStatus.NOT_FOUND, "User not found");
             return new ModelAndView("redirect:/profile");
         } else {
-            Profile profile = this.profilePageRepository.getProfileById(userId);
+            Profile profile = this.profilePageRepository.getProfileById(applicantId);
             modelAndView.addObject("profile", profile);
-            modelAndView.addObject("Log", this.communicationLogRepository.getLogsByApplicantId(userId));
+            System.out.println("Applicant ID: " + applicantId);
+            modelAndView.addObject("Log", this.communicationLogRepository.getLogsByApplicantId(applicantId));
 
 
             //Displaying the cv if it exists
 
-            byte[] cvPath = profilePageRepository.getCvPath(userId);
+            byte[] cvPath = profilePageRepository.getCvPath(applicantId);
             if(cvPath != null){
                 String cvBase64 = Base64.getEncoder().encodeToString(cvPath);
                 modelAndView.addObject("cvBase64", cvBase64);

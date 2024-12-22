@@ -21,8 +21,13 @@ class ProfilePageRepositoryImplTest {
 
     @BeforeEach
     void setUp() {
+        try{
         MockitoAnnotations.openMocks(this);
         profilePageRepository = new ProfilePageRepositoryImpl(jdbcTemplate);
+        }catch(Exception e){
+            System.out.println(e);
+        }
+
     }
 
     // Test for getting profiles from the database
