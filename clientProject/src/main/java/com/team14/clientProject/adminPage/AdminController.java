@@ -50,10 +50,14 @@ public class AdminController {
     }
     @GetMapping("/admin/session/user/{id}/{logoutTime}")
     public ModelAndView getUserDetailsPage(@PathVariable("id") int id, @PathVariable("logoutTime") String logoutTime) {
+        try{
         ModelAndView modelAndView = new ModelAndView("admin/userSession");
         modelAndView.addObject("user", adminService.getUserById(id));
         modelAndView.addObject("logs", adminService.getSessionLogs(id, logoutTime));
-        return modelAndView;
+        return modelAndView;}
+        catch (Exception e){
+            return new ModelAndView("redirect:/admin");
+        }
     }
 
     @GetMapping("/admin/add")

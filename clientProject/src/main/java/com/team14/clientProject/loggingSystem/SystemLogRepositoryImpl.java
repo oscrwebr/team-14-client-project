@@ -75,4 +75,9 @@ public class SystemLogRepositoryImpl implements SystemLogRepository {
         String sql = "SELECT ID FROM users WHERE username = ?";
         return jdbcTemplate.queryForObject(sql, Integer.class, username);
     }
+
+    public void clearLogs() {
+        String sql = "DELETE FROM systemLogs";
+        jdbcTemplate.update(sql);
+    }
 }

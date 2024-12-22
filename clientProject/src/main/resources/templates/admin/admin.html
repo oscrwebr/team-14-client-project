@@ -85,7 +85,7 @@
         </thead>
         <tbody>
         <tr class="logs" th:each="systemLog : ${systemLogs}">
-            <td class="SystemLogs" th:text="System"></td>
+            <td class="sessionLogs" th:text="System"></td>
             <td th:text="${systemLog.getLogId()}"></td>
             <td th:text="${systemLog.getUserId()}"></td>
             <td th:text="${systemLog.getTimestamp()}"></td>

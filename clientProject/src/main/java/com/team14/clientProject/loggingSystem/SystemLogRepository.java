@@ -11,4 +11,5 @@ public interface SystemLogRepository {
     List getWhenUserLoggedIn(int UserId, String logoutTime);
     List<SystemLog> getLogoutLogs();
     List<SystemLog> getSessionLogs(int userId, String loginTime, String logoutTime);
+    void clearLogs();
 }
