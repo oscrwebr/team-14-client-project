@@ -33,6 +33,10 @@
 <!--                        Will be later updated to actually show details of the current user
                             Need to wait for login functionality first ... Currently using default template-->
                     </li>
+                    <!-- Admin-specific link -->
+                    <li class="nav-item" th:if="${#authorization.expression('hasRole(''ROLE_ADMIN'')')}">
+                        <a class="nav-link" href="/admin">Admin Page</a>
+                    </li>
                     <li class="nav-item">
                         <a class = "nav-link" th:href="@{/logout}">logout</a>
                     </li>
