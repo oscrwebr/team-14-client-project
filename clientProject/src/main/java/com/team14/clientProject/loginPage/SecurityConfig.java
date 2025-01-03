@@ -25,7 +25,9 @@ public class SecurityConfig {
     public static final String[] ENDPOINTS_WHITELIST = {
             "/",
             "/403",
-            "/login"
+            "/login",
+            "/reset-password",
+            "/reset-password/confirm"
     };
 
     @Bean

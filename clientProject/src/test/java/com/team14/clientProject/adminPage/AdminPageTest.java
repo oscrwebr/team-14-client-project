@@ -40,7 +40,7 @@ public class AdminPageTest {
         // Create a new user object
         User newUser = new User();
         newUser.setUsername("testUser");
-        newUser.setPassword("password123");
+        newUser.setEmail("testUser@example.com");
         newUser.setFirstName("Test");
         newUser.setLastName("User");
         newUser.setRole("ROLE_USER");
@@ -61,7 +61,7 @@ public class AdminPageTest {
         // Create a new user object
         User newUser = new User();
         newUser.setUsername("testUser");
-        newUser.setPassword("password123");
+        newUser.setEmail("testUser@example.com");
         newUser.setFirstName("Test");
         newUser.setLastName("User");
         newUser.setRole("ROLE_USER");
