@@ -17,6 +17,12 @@
 <body>
 <div th:replace="~{fragments/header :: header}"></div>
 <div class="userDetails-container">
+    <div th:if="${success}">
+        <div class="alert alert-success" role="alert" th:text="${success}"></div>
+    </div>
+    <div th:if="${error}">
+        <div class="alert alert-danger" role="alert" th:text="${error}"></div>
+    </div>
     <main class="userDetails-wrapper">
         <div class="userDetails-content">
             <h1 th:text="#{user.details.title}"></h1>
@@ -25,6 +31,7 @@
             <p><strong th:text="#{user.details.password}"></strong> <span th:text="${user.password}" class="userDetails-info"></span></p>
             <p><strong th:text="#{user.details.firstName}"></strong> <span th:text="${user.firstName}" class="userDetails-info"></span></p>
             <p><strong th:text="#{user.details.lastName}"></strong> <span th:text="${user.lastName}" class="userDetails-info"></span></p>
+            <p><strong th:text="#{profile.page.edit.email}"></strong> <span th:text="${user.email}" class="userDetails-info"></span></p>
             <p><strong th:text="#{user.details.role}"></strong> <span th:text="${user.role}" class="userDetails-info"></span></p>
             <p><strong th:text="#{user.details.lastLogin}"></strong> <span th:text="${user.lastLogin}" class="userDetails-info"></span></p>
             <p><strong th:text="#{user.details.createdAt}"></strong> <span th:text="${user.createdAt}" class="userDetails-info"></span></p>
@@ -32,6 +39,10 @@
         <div class="userDetails-actions">
             <form th:action="@{/admin/user/delete/{id}(id=${user.id})}" method="post" class="userDetails-delete-form">
                 <button type="submit" class="userDetails-button-delete" onclick="confirmDelete()" th:text="#{user.details.delete}"></button>
+            </form>
+            <form th:action="@{/reset-password/send-reset-link}" method="post" class="userDetails-reset-form">
+                <input type="hidden" name="email" th:value="${user.email}" />
+                <button type="submit" class="userDetails-button-reset">Send Reset Link</button>
             </form>
             <a th:href="@{/admin}" class="userDetails-button-back" th:text="#{user.details.back}"></a>
         </div>

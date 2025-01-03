@@ -17,6 +17,8 @@ drop table if exists applicants;
 drop table if exists deletedApplicants;
 drop table if exists deletedUsers;
 
+drop table if exists reset_tokens;
+
 SET FOREIGN_KEY_CHECKS = 1;
 
 
@@ -28,6 +30,7 @@ create table if not exists users(
     passwordHashed   CHAR(128) not null ,
     firstName       varchar(128) not null,
     lastName        varchar(128) not null,
+    email           varchar(100) not null unique,
     role            varchar(50) not null,
     lastLogin       timestamp,
     createdAt        timestamp default current_timestamp
@@ -128,6 +131,7 @@ create table if not exists deletedUsers(
                                     passwordHashed   varchar(128) not null ,
                                     firstName       varchar(128) not null,
                                     lastName        varchar(128) not null,
+                                    email           varchar(100) not null unique,
                                     role            varchar(50) NOT NULL DEFAULT 'ROLE_USER',
                                     lastLogin       timestamp,
                                     createdAt        timestamp default current_timestamp,
@@ -139,3 +143,10 @@ CREATE EVENT IF NOT EXISTS deleteUsers
     ON SCHEDULE EVERY 30 SECOND
     DO
     DELETE FROM deletedUsers WHERE deletedAt < NOW() - INTERVAL 30 SECOND;
+
+create table if not exists reset_tokens (
+                              id INT AUTO_INCREMENT PRIMARY KEY,
+                              email VARCHAR(255) NOT NULL,
+                              token VARCHAR(255) NOT NULL,
+                              expiration TIMESTAMP NOT NULL
+) engine = InnoDB;

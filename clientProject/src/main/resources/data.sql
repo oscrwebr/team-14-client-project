@@ -1,19 +1,18 @@
 -- Populate the Users table
 use nhs_recruitment;
 
-insert into users (username, passwordHashed, firstName, lastName, role, lastLogin)
-values
-    ('admin', '$2a$12$diNTM8P5VDcw7jQ7bETrBOpkRNgTnHYp6BNM/Ea0OnzdQTBWLjD6G', 'Alice', 'Johnson', 'ROLE_ADMIN', NOW()),
-    ('user', '$2a$12$diNTM8P5VDcw7jQ7bETrBOpkRNgTnHYp6BNM/Ea0OnzdQTBWLjD6G', 'Alice', 'Johnson', 'ROLE_USER', NOW()),
-    ('user2', '$2a$12$diNTM8P5VDcw7jQ7bETrBOpkRNgTnHYp6BNM/Ea0OnzdQTBWLjD6G', 'Bob', 'Smith', 'ROLE_USER', NOW()),
-    ('user3', '$2a$12$diNTM8P5VDcw7jQ7bETrBOpkRNgTnHYp6BNM/Ea0OnzdQTBWLjD6G', 'Carol', 'Williams', 'ROLE_USER', NOW()),
-    ('user4', '$2a$12$diNTM8P5VDcw7jQ7bETrBOpkRNgTnHYp6BNM/Ea0OnzdQTBWLjD6G', 'David', 'Brown', 'ROLE_USER', NOW()),
-    ('user5', '$2a$12$diNTM8P5VDcw7jQ7bETrBOpkRNgTnHYp6BNM/Ea0OnzdQTBWLjD6G', 'Eve', 'Davis', 'ROLE_USER', NOW()),
-    ('user6', '$2a$12$diNTM8P5VDcw7jQ7bETrBOpkRNgTnHYp6BNM/Ea0OnzdQTBWLjD6G', 'Frank', 'Miller', 'ROLE_USER', NOW()),
-    ('user7', '$2a$12$diNTM8P5VDcw7jQ7bETrBOpkRNgTnHYp6BNM/Ea0OnzdQTBWLjD6G', 'Grace', 'Wilson', 'ROLE_USER', NOW()),
-    ('user8', '$2a$12$diNTM8P5VDcw7jQ7bETrBOpkRNgTnHYp6BNM/Ea0OnzdQTBWLjD6G', 'Henry', 'Moore', 'ROLE_USER', NOW()),
-    ('user9', '$2a$12$diNTM8P5VDcw7jQ7bETrBOpkRNgTnHYp6BNM/Ea0OnzdQTBWLjD6G', 'Ivy', 'Taylor', 'ROLE_USER', NOW()),
-    ('user10', '$2a$12$diNTM8P5VDcw7jQ7bETrBOpkRNgTnHYp6BNM/Ea0OnzdQTBWLjD6G', 'Jack', 'Anderson', 'ROLE_USER', NOW());
+INSERT INTO users (username, passwordHashed, firstName, lastName, email, role, lastLogin)
+VALUES
+    ('admin', '$2a$12$diNTM8P5VDcw7jQ7bETrBOpkRNgTnHYp6BNM/Ea0OnzdQTBWLjD6G', 'Alice', 'Johnson', 'admin@example.com', 'ROLE_ADMIN', NOW()),
+    ('user2', '$2a$12$diNTM8P5VDcw7jQ7bETrBOpkRNgTnHYp6BNM/Ea0OnzdQTBWLjD6G', 'Bob', 'Smith', 'user2@example.com', 'ROLE_USER', NOW()),
+    ('user3', '$2a$12$diNTM8P5VDcw7jQ7bETrBOpkRNgTnHYp6BNM/Ea0OnzdQTBWLjD6G', 'Carol', 'Williams', 'user3@example.com', 'ROLE_USER', NOW()),
+    ('user4', '$2a$12$diNTM8P5VDcw7jQ7bETrBOpkRNgTnHYp6BNM/Ea0OnzdQTBWLjD6G', 'David', 'Brown', 'user4@example.com', 'ROLE_USER', NOW()),
+    ('user5', '$2a$12$diNTM8P5VDcw7jQ7bETrBOpkRNgTnHYp6BNM/Ea0OnzdQTBWLjD6G', 'Eve', 'Davis', 'user5@example.com', 'ROLE_USER', NOW()),
+    ('user6', '$2a$12$diNTM8P5VDcw7jQ7bETrBOpkRNgTnHYp6BNM/Ea0OnzdQTBWLjD6G', 'Frank', 'Miller', 'user6@example.com', 'ROLE_USER', NOW()),
+    ('user7', '$2a$12$diNTM8P5VDcw7jQ7bETrBOpkRNgTnHYp6BNM/Ea0OnzdQTBWLjD6G', 'Grace', 'Wilson', 'user7@example.com', 'ROLE_USER', NOW()),
+    ('user8', '$2a$12$diNTM8P5VDcw7jQ7bETrBOpkRNgTnHYp6BNM/Ea0OnzdQTBWLjD6G', 'Henry', 'Moore', 'user8@example.com', 'ROLE_USER', NOW()),
+    ('user9', '$2a$12$diNTM8P5VDcw7jQ7bETrBOpkRNgTnHYp6BNM/Ea0OnzdQTBWLjD6G', 'Ivy', 'Taylor', 'user9@example.com', 'ROLE_USER', NOW()),
+    ('user10', '$2a$12$diNTM8P5VDcw7jQ7bETrBOpkRNgTnHYp6BNM/Ea0OnzdQTBWLjD6G', 'Jack', 'Anderson', 'user10@example.com', 'ROLE_USER', NOW());
 
 
 -- Populate the Applicants table with NHS-related data

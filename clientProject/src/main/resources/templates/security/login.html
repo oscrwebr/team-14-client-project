@@ -2,14 +2,32 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login</title>
 </head>
 <body>
-    <form action="/login" method="post">
+
+<div th:if="${success}" class="alert alert-success">
+    <p th:text="${success}"></p>
+</div>
+
+<h2>Login</h2>
+<form action="/login" method="post">
+    <div>
         <label for="username">Username:</label><br>
-        <input type="text" id="username" name="username"><br>
+        <input type="text" id="username" name="username" required><br>
+    </div>
+
+    <div>
         <label for="password">Password:</label><br>
-        <input type="password" id="password" name="password"><br>
+        <input type="password" id="password" name="password" required><br>
+    </div>
+
+    <div>
         <input type="submit" value="Submit">
+    </div>
+</form>
+
 </body>
 </html>

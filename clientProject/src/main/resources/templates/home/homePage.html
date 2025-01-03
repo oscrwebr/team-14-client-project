@@ -9,6 +9,9 @@
 </head>
 <body>
 <div th:replace="~{fragments/header :: header}"/>
+<div th:if="${success}" class="success-message">
+    <p th:text="${success}"></p>
+</div>
 <div class="homeContainer">
 <!--Recent applicant table-->
     <div class="tableContainerHome">

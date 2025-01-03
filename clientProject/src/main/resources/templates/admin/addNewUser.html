@@ -30,15 +30,15 @@
             </div>
 
             <div class="addNewUsers-form-group">
-                <label for="passwordHashed" class="addNewUsers-label" th:text="#{add.user.password}"></label>
-                <input type="password" id="passwordHashed" th:field="*{password}" class="addNewUsers-input" required>
+                <label for="email" class="addNewUsers-label" th:text="#{profile.page.edit.email}"></label>
+                <input type="email" id="email" th:field="*{email}" class="addNewUsers-input" required>
             </div>
 
             <div class="addNewUsers-form-group">
                 <label for="role" class="addNewUsers-label" th:text="#{add.user.role}"></label>
                 <select id="role" th:field="*{role}" class="addNewUsers-select" required>
                     <option value="ROLE_USER">Recruiter</option>
-                    <option value="ROLL_ADMIN">Admin</option>
+                    <option value="ROLE_ADMIN">Admin</option>
                 </select>
             </div>
 

@@ -1,8 +1,11 @@
 package com.team14.clientProject.adminPage;
 
+import com.team14.clientProject.Utility.PasswordGenerator;
+import com.team14.clientProject.emailPage.mail.EmailService;
 import com.team14.clientProject.loggingSystem.*;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -13,8 +16,10 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.sql.Timestamp;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 @Controller
 public class AdminController {
@@ -23,6 +28,10 @@ public class AdminController {
     private SystemLogRepositoryImpl systemLogRepository;
     @Autowired
     private CommunicationLogRepositoryImpl communicationLogRepository;
+    @Autowired
+    private EmailService emailService;
+    @Autowired
+    private BCryptPasswordEncoder passwordEncoder;
 
     private final AdminService adminService;
     private List<CommunicationLog> communicationLogs;
@@ -77,12 +86,48 @@ public class AdminController {
             redirectAttributes.addFlashAttribute("error", "Invalid data: " + result.getAllErrors().get(0).getDefaultMessage());
             return "redirect:/admin/add";
         }
+
         try {
+            String defaultPassword = PasswordGenerator.generateDefaultPassword();
+            String hashedPassword = passwordEncoder.encode(defaultPassword);
+            user.setPassword(hashedPassword);
+            user.setCreatedAt(LocalDateTime.now());
+            user.setLastLogin(null);
+
             adminService.addUser(user);
+
+            String resetToken = UUID.randomUUID().toString();
+            adminService.saveResetToken(user.getEmail(), resetToken);
+
+            // Send the email with the reset link
+            String resetLink = "http://localhost:8080/reset-password/confirm?token=" + resetToken;
+            String emailContent = "<html>" +
+                    "<body>" +
+                    "<p>Dear " + user.getFirstName() + ",</p>" +
+                    "<p>Your account has been created successfully.</p>" +
+                    "<p>Your username is: <b>" + user.getUsername() + "</b></p>" +
+                    "<p>Please set your password using the following link:</p>" +
+                    "<a href='" + resetLink + "'>Set Your Password</a>" +
+                    "<br><br>" +
+                    "<p>Thank you,<br>Admin Team</p>" +
+                    "</body>" +
+                    "</html>";
+            try {
+                emailService.sendHtmlMessageWithLogo(
+                        user.getEmail(),
+                        "Account Created: Set Your Password",
+                        emailContent,
+                        "src/main/resources/static/images/dhcw.png"
+                );
+            } catch (jakarta.mail.MessagingException e) {
+                System.err.println("Failed to send email to " + user.getEmail() + ": " + e.getMessage());
+            }
+
             redirectAttributes.addFlashAttribute("success", "User added successfully!");
         } catch (Exception e) {
             redirectAttributes.addFlashAttribute("error", "Failed to add user: " + e.getMessage());
         }
+
         return "redirect:/admin";
     }
 

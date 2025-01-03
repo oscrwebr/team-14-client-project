@@ -1,17 +1,20 @@
+/* Global Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+}
+
+/* Table Styles */
 .table-content {
     width: 90%;
     height: 80%;
     margin: 0 auto;
     align-content: center;
-}
-
-.newUser {
-    justify-content: center;
-    align-items: center;
-    margin: 0 auto;
-    width: 100%;
-    max-height: 60vh;
-    overflow-y: auto;
 }
 
 .table-content td, .table-content th {
@@ -53,7 +56,7 @@
     display: table-row;
 }
 
-.table-content tbody tr:not(:first-child)  {
+.table-content tbody tr:not(:first-child) {
     border-top: 1px #2D366C;
 }
 
@@ -66,26 +69,40 @@
     background: #2D366C;
 }
 
-/* Buttons */
-.admin-new-user {
-    display: inline-block;
-    font-size: 1rem;
-    font-weight: 700;
-    padding: 10px 20px;
-    background-color: #003366;
+/* Log Table Styles */
+.log {
+    width: 90%;
+    height: 40vh;
+    margin: 0 auto;
+    align-content: center;
+    overflow-y: auto;
+}
+
+.logTable {
+    width: 100%;
+    height: 100%;
+    margin: 0 auto;
+    align-content: center;
+    overflow-x: auto;
+}
+
+.logTable th, .logTable td {
+    border: 1px solid black;
+    border-collapse: collapse;
+    height: auto;
+}
+
+.logTable th {
+    font-size: 1.5vw;
+    font-weight: normal;
     color: white;
-    text-align: center;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    text-decoration: none
+    position: sticky;
+    background: #2D366C;
+    top: -0.2vh;
+    z-index: auto;
 }
 
-.admin-new-user:hover {
-    background-color: #22519C;
-}
-
-/* Add New Users Css */
+/* Add New User Styles */
 .addNewUsers-Container {
     max-width: 960px;
     margin: 0 auto;
@@ -96,7 +113,6 @@
     padding: 20px 0;
 }
 
-/* Typography */
 .addNewUsers-header-1 {
     font-size: 2rem;
     font-weight: 700;
@@ -112,7 +128,6 @@
     color: #212b32;
 }
 
-/* Form Inputs */
 .addNewUsers-input, .addNewUsers-select {
     width: 100%;
     padding: 10px;
@@ -129,12 +144,12 @@
 }
 
 /* Buttons */
-.addNewUsers-button {
+.admin-new-user {
     display: inline-block;
     font-size: 1rem;
     font-weight: 700;
     padding: 10px 20px;
-    background-color: #007f3b;
+    background-color: #003366;
     color: white;
     text-align: center;
     border: none;
@@ -143,11 +158,11 @@
     text-decoration: none;
 }
 
-.addNewUsers-button:hover {
-    background-color: #005eb8;
+.admin-new-user:hover {
+    background-color: #22519C;
 }
 
-/* User Details Container */
+/* User Details Section */
 .userDetails-container {
     max-width: 960px;
     margin: 0 auto;
@@ -157,12 +172,10 @@
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
 
-/* Wrapper */
 .userDetails-wrapper {
     padding: 20px 0;
 }
 
-/* Header */
 .userDetails-header {
     font-size: 2rem;
     font-weight: 700;
@@ -170,7 +183,6 @@
     color: #005eb8;
 }
 
-/* Content */
 .userDetails-content {
     font-size: 1rem;
     line-height: 1.5;
@@ -187,23 +199,31 @@
     color: #005eb8;
 }
 
-/* Buttons */
+/* User Details Buttons */
 .userDetails-actions {
     display: flex;
     gap: 10px;
     margin-top: 20px;
+    justify-content: center;
 }
 
-.userDetails-button-delete {
+.userDetails-button-delete,
+.userDetails-button-back,
+.userDetails-button-reset,
+.userDetails-reset-form button {
     font-size: 1rem;
     font-weight: 700;
     padding: 10px 20px;
-    background-color: #d4351c;
     color: white;
+    text-align: center;
     border: none;
     border-radius: 4px;
     cursor: pointer;
-    text-align: center;
+    flex: 1;
+}
+
+.userDetails-button-delete {
+    background-color: #d4351c;
 }
 
 .userDetails-button-delete:hover {
@@ -211,53 +231,35 @@
 }
 
 .userDetails-button-back {
-    font-size: 1rem;
-    font-weight: 700;
-    padding: 10px 20px;
     background-color: #003366;
-    color: white;
-    border: none;
-    border-radius: 4px;
-    text-decoration: none;
-    text-align: center;
-    cursor: pointer;
 }
 
 .userDetails-button-back:hover {
     background-color: #22519C;
 }
 
-/* Delete Form */
-.userDetails-delete-form {
-    display: inline-block;
-    margin-right: 10px;
+.userDetails-reset-form button {
+    background-color: #007f3b;
 }
 
-.log{
-    width: 90%;
-    height: 40vh;
-    margin: 0 auto;
-    align-content: center;
-    overflow-y: auto;
+.userDetails-reset-form button:hover {
+    background-color: #005eb8;
 }
-.logTable {
-    width: 100%;
-    height: 100%;
-    margin: 0 auto;
-    align-content: center;
-    overflow-x: auto;
-}
-.logTable th, .logTable td {
-    border: 1px solid black;
-    border-collapse: collapse;
-    height: auto;
-}
-.logTable th {
-    font-size: 1.5vw;
-    font-weight: normal;
+
+.addNewUsers-button {
+    display: inline-block;
+    font-size: 1rem;
+    font-weight: 700;
+    padding: 10px 20px;
+    background-color: #003366;
     color: white;
-    position: sticky;
-    background: #2D366C;
-    top: -0.2vh;
-    z-index: auto;
+    text-align: center;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    width: 100%;
+}
+
+.addNewUsers-button:hover {
+    background-color: #22519C;
 }
