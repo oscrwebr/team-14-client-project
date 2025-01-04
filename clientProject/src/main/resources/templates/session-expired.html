@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link th:replace="~{fragments/header :: bootstrap-css}"/>
+    <title>Session Expired</title>
+</head>
+<body>
+<div th:replace="~{fragments/header :: header}"></div>
+<h1>Your session has expired, or you have reached the maximum number of allowed sessions.</h1>
+<p>Please log in again to continue.</p>
+<a href="/login">Login</a>
+<div th:replace="~{fragments/footer :: footer-links}"></div>
+<div th:replace="~{fragments/footer :: bootstrap-js}"></div>
+</body>
+</html>

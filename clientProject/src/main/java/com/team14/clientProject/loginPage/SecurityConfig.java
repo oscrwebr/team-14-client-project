@@ -6,6 +6,8 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
+import org.springframework.security.core.session.SessionRegistry;
+import org.springframework.security.core.session.SessionRegistryImpl;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 
@@ -22,19 +24,11 @@ public class SecurityConfig {
         this.dataSource = dataSource;
     }
 
-    public static final String[] ENDPOINTS_WHITELIST = {
-            "/",
-            "/403",
-            "/login",
-            "/reset-password",
-            "/reset-password/confirm"
-    };
-
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
                 .authorizeHttpRequests(request -> request
-                        .requestMatchers("/", "/403", "/login", "/reset-password", "/reset-password/confirm").permitAll()
+                        .requestMatchers("/", "/403", "/login", "/reset-password", "/reset-password/confirm", "/session-expired").permitAll()
                         .requestMatchers("/admin/**").hasRole("ADMIN")
                         .anyRequest().authenticated())
                 .formLogin(form -> form
@@ -44,8 +38,23 @@ public class SecurityConfig {
                         .logoutUrl("/logout")
                         .permitAll())
                 .exceptionHandling(e -> e
-                        .accessDeniedPage("/403"));
+                        .accessDeniedPage("/403"))
+                .sessionManagement(session -> session
+                        .maximumSessions(1)
+                        .expiredUrl("/session-expired")
+                        .maxSessionsPreventsLogin(false)
+                        .sessionRegistry(sessionRegistry()))
+                .rememberMe(remember -> remember
+                        .key("uniqueAndSecret")
+                        .tokenValiditySeconds(86400)
+                        .rememberMeParameter("remember-me")
+                        .alwaysRemember(false));
         return http.build();
+    }
+
+    @Bean
+    public SessionRegistry sessionRegistry() {
+        return new SessionRegistryImpl();
     }
 
     @Autowired
@@ -56,4 +65,3 @@ public class SecurityConfig {
                 .passwordEncoder(passwordEncoder);
     }
 }
-

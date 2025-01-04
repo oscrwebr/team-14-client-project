@@ -36,29 +36,27 @@ dependencies {
 	testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
 
 	implementation 'org.springframework.boot:spring-boot-starter-jdbc'
-
 	implementation 'org.mariadb.jdbc:mariadb-java-client:3.4.1'
 	implementation 'com.h2database:h2'
 
-	// https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-mail
+	// Mail and other dependencies
 	implementation 'org.springframework.boot:spring-boot-starter-mail:3.4.0'
 	implementation 'com.sun.mail:jakarta.mail:2.0.1'
 
+	// Spring Security and Session
 	implementation 'org.springframework.boot:spring-boot-starter-security'
 	implementation 'org.thymeleaf.extras:thymeleaf-extras-springsecurity6'
+	implementation 'org.springframework.session:spring-session-core:3.0.0' // Specifying version
 
-
+	// Testing
 	testImplementation 'org.springframework.security:spring-security-test'
-
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 	testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
 
-	// CSV Reader - https://opencsv.sourceforge.net/
+	// CSV Reader and others
 	implementation 'com.opencsv:opencsv:5.8'
 	implementation 'org.jsoup:jsoup:1.15.3'
 	implementation 'org.seleniumhq.selenium:selenium-java:4.27.0'
-
-
 }
 
 tasks.named('test') {
