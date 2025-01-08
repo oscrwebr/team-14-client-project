@@ -93,7 +93,7 @@ public class customEmailTests {
 
         List<String> emailIds = Arrays.asList("john.doe@example.com", "jane.smith@example.com");
         String successMessage = "Emails sent successfully.";
-        when(emailServiceHandler.sendEmails(emailIds, "Test Subject", "Test Message", "src/main/resources/static/images/dhcw.png"))
+        when(emailServiceHandler.sendEmails(emailIds, "Test Subject", "Test Message", ""))
                 .thenReturn(successMessage);
 
         ModelAndView result = emailPage.sendCustomEmails("Test Subject", "Test Message", emailIds);
@@ -111,7 +111,7 @@ public class customEmailTests {
     public void testSendCustomEmails_WithRecipients_Failure() {
 
         List<String> emailIds = Arrays.asList("john.doe@example.com", "jane.smith@example.com");
-        when(emailServiceHandler.sendEmails(emailIds, "Test Subject", "Test Message", "src/main/resources/static/images/dhcw.png"))
+        when(emailServiceHandler.sendEmails(emailIds, "Test Subject", "Test Message", ""))
                 .thenThrow(new RuntimeException("SMTP server not reachable."));
 
 

@@ -20,7 +20,7 @@ values
 insert into applicants (firstName, lastName, location, email, phoneNumber, eventAttended, skill)
 values
     ('Sarah', 'Connor', 'Cardiff', 'kirill.akbulatv@pm.me', '1234567890', 'NHS Careers Fair', 'Healthcare, Nursing'),
-    ('John', 'Doe', 'Swansea', 'kirill.spam@gmail.com', '2345678901', 'NHS Recruitment Day', 'Healthcare, Public Health'),
+    ('John', 'Doe', 'Swansea', 'freddythemole@hotmail.co.uk', '2345678901', 'NHS Recruitment Day', 'Healthcare, Public Health'),
     ('Jane', 'Smith', 'Newport', 'ayushy04@gmail.com', '3456789012', 'Health Conference', 'Nursing, Midwifery'),
     ('Mike', 'Ross', 'Wrexham', 'mross@example.com', '4567890123', 'NHS Recruitment', 'Clinical Research, Pharmacy'),
     ('Emily', 'Blunt', 'Bangor', '', '5678901234', 'Health Conference', 'Physiotherapy, Occupational Therapy'),

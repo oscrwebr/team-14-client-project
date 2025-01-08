@@ -24,8 +24,6 @@ public class EmailServiceImpl implements EmailService {
         helper.setTo(to);
         helper.setSubject(subject);
         helper.setText(htmlBody, true);
-        File logo = new File(logoPath);
-        helper.addInline("logo", logo);
         emailSender.send(message);
     }
 

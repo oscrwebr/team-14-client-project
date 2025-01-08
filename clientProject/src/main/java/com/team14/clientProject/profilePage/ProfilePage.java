@@ -149,7 +149,7 @@ public class ProfilePage {
         // Define the email subject and HTML body content
         String subject = "Test Subject to Your Specific Email";
         String htmlBody = "<html><body><h1>An email has been sent to your specific email address. </h1><img src='cid:logo'></body></html>";
-        String logoPath = "src/main/resources/static/images/dhcw.png";
+        String logoPath = "clientProject/src/main/resources/static/images/dhcw.png";
 
         // Send the email with the specified subject, body, and logo
         emailService.sendHtmlMessageWithLogo(emailAddress, subject, htmlBody, logoPath);
