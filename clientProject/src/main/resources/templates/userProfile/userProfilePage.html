@@ -17,6 +17,10 @@
     <p>Last Name: <span th:text="${user.lastName}"></span></p>
 
     <p>Role: <span th:text="${user.role}"></span></p>
+
+    <div class="heading">
+        <a class="btn btn-info" th:href="@{/home}" th:text="#{user.profile.back}"></a>
+    </div>
 </div>
 
 
