@@ -8,9 +8,17 @@ import org.springframework.jdbc.core.simple.SimpleJdbcInsert;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Repository;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 @Repository
 public class AdminRepositoryImpl implements AdminRepository {
@@ -122,8 +130,26 @@ public class AdminRepositoryImpl implements AdminRepository {
         if (!password.matches(".*[A-Z].*")) {
             throw new IllegalArgumentException("Password must contain at least one uppercase letter");
         }
+        if (isCommonPassword(password)) {
+            throw new IllegalArgumentException("Password is too common");
+        }
         BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
         password = encoder.encode(password);
         return password;
     }
+    private boolean isCommonPassword(String password) {
+        try (InputStream inputStream = getClass().getClassLoader().getResourceAsStream("static/commonPasswords.txt")) {
+            if (inputStream == null) {
+                throw new RuntimeException("Common passwords file not found.");
+            }
+            List<String> commonPasswords = new BufferedReader(new InputStreamReader(inputStream))
+                    .lines()
+                    .collect(Collectors.toList());
+            return commonPasswords.contains(password.toLowerCase());
+        } catch (IOException e) {
+            throw new RuntimeException("Error reading common passwords file", e);
+        }
+    }
+
+
 }
