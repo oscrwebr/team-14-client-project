@@ -56,6 +56,10 @@ public class AdminController {
     @GetMapping("/admin/user/{id}")
     public ModelAndView getUserDetailsPage(@PathVariable("id") int id) {
         ModelAndView modelAndView = new ModelAndView("admin/userDetails");
+        if (adminService.getUserById(id) == null) {
+            modelAndView.setViewName("redirect:/admin");
+            return modelAndView;
+        }
         User user = adminService.getUserById(id);
         modelAndView.addObject("user", user);
         return modelAndView;
