@@ -7,4 +7,5 @@ public interface AdminService {
     User getUserById(int id);
     User addUser(User user);
     void deleteUser(int id);
+    String validatePassword(String password);
 }

@@ -36,4 +36,9 @@ public class AdminServiceImpl implements AdminService {
     public void deleteUser(int id) {
         adminRepository.deleteUserById(id);
     }
+
+    @Override
+    public String validatePassword(String password) {
+        return adminRepository.validatePassword(password);
+    }
 }

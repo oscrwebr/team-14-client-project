@@ -46,5 +46,16 @@
 </div>
 <div th:replace="~{fragments/footer :: footer-links}"></div>
 <div th:replace="~{fragments/footer :: bootstrap-js}"></div>
+<script th:inline="javascript">
+    /*<![CDATA[*/
+    const errorMessage = /*[[${error}]]*/ '';
+    if (errorMessage) {
+        alert(errorMessage);
+    }
+    /*]]>*/
+</script>
+
+
+
 </body>
 </html>

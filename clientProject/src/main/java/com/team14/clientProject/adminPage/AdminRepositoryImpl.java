@@ -5,6 +5,7 @@ import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.jdbc.core.simple.SimpleJdbcInsert;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Repository;
 
 import java.util.HashMap;
@@ -65,6 +66,12 @@ public class AdminRepositoryImpl implements AdminRepository {
         if (count > 0) {
             throw new IllegalArgumentException("A user with this username already exists");
         }
+        try {
+            user.setPassword(validatePassword(user.getPassword()));
+        } catch (IllegalArgumentException e) {
+            throw new IllegalArgumentException(e.getMessage());
+        }
+
 
         // Define the SQL Insert statement
         String insertQuery = "INSERT INTO users (username, passwordHashed, firstName, lastName, role, lastLogin, createdAt) " +
@@ -100,5 +107,23 @@ public class AdminRepositoryImpl implements AdminRepository {
 
         String sql = "DELETE FROM users WHERE ID = ?";
         jdbcTemplate.update(sql, ID);
+    }
+    @Override
+    public String validatePassword(String password) {
+        if (password.length() < 8) {
+            throw new IllegalArgumentException("Password must be at least 8 characters long");
+        }
+        if (!password.matches(".*\\d.*")) {
+            throw new IllegalArgumentException("Password must contain at least one digit");
+        }
+        if (!password.matches(".*[a-z].*")) {
+            throw new IllegalArgumentException("Password must contain at least one lowercase letter");
+        }
+        if (!password.matches(".*[A-Z].*")) {
+            throw new IllegalArgumentException("Password must contain at least one uppercase letter");
+        }
+        BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
+        password = encoder.encode(password);
+        return password;
     }
 }

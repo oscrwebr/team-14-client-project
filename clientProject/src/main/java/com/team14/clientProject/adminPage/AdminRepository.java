@@ -7,4 +7,5 @@ public interface AdminRepository {
     User findUserById(int id);
     User addUser(User user);
     void deleteUserById(int id);
+    String validatePassword(String password);
 }
