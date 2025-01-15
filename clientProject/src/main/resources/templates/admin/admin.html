@@ -64,7 +64,7 @@
             <td th:unless="${log instanceof T(com.team14.clientProject.loggingSystem.CommunicationLog)}"></td>
             <td th:text="${log.getActionTaken()}"></td>
             <td th:if="${log instanceof T(com.team14.clientProject.loggingSystem.CommunicationLog)}" th:text="${log.getNotes()}"></td>
-            <td th:unless="${log instanceof T(com.team14.clientProject.loggingSystem.CommunicationLog)}"></td>
+            <td th:unless="${log instanceof T(com.team14.clientProject.loggingSystem.CommunicationLog)}" th:text="${log.getNotes()}"></td>
             <td th:text="${log.getTimestamp()}"></td>
         </tr>
 

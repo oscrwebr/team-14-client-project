@@ -82,8 +82,26 @@ public class SystemLogRepositoryImpl implements SystemLogRepository {
         String sql = "DELETE FROM systemLogs";
         jdbcTemplate.update(sql);
     }
+
     public void addTraversalLog(String notes) {
         String sql = "INSERT INTO systemLogs (userId, actionTaken, notes) VALUES (?, 'traversal', ?)";
         jdbcTemplate.update(sql, getUserIdFromUsername(SecurityConfig.getCurrentUserId()), notes);
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
