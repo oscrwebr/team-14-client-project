@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>User Details</title>
+    <link th:replace="~{fragments/header :: bootstrap-css}"/>
+    <link rel="stylesheet" href="/css/admin.css">
+
+</head>
+<body>
+<div th:replace="~{fragments/header :: header}"></div>
+<div class="userDetails-container">
+    <main class="userDetails-wrapper">
+        <div class="userDetails-content">
+            <h1 th:text="#{user.details.title}"></h1>
+            <p><strong th:text="#{user.details.id}"></strong> <span th:text="${user.id}" class="userDetails-info"></span></p>
+            <p><strong th:text="#{user.details.firstName}"></strong> <span th:text="${user.firstName}" class="userDetails-info"></span></p>
+            <p><strong th:text="#{user.details.lastName}"></strong> <span th:text="${user.lastName}" class="userDetails-info"></span></p>
+            <p><strong th:text="#{user.details.role}"></strong> <span th:text="${user.role}" class="userDetails-info"></span></p>
+        </div>
+        <table id="table2" class="logTable">
+            <thead>
+            <tr>
+                <th th:text="#{admin.page.logType}">Log type</th>
+                <th th:text="#{admin.page.logId}">Log Id</th>
+                <th th:text="#{admin.page.applicantId}">applicant ID</th>
+                <th th:text="#{admin.page.commMethod}">Comm Method</th>
+                <th th:text="#{admin.page.actionTaken}">Action Taken</th>
+                <th th:text="#{admin.page.content}">Content</th>
+                <th th:text="#{admin.page.Time}">Time</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr class="logs" th:each="log : ${logs}">
+                <td th:if="${log instanceof T(com.team14.clientProject.loggingSystem.CommunicationLog)}" th:text="Communication" class="communicationLog"></td>
+                <td class="SystemLogs" th:unless="${log instanceof T(com.team14.clientProject.loggingSystem.CommunicationLog)}" th:text="System"></td>
+                <td th:text="${log.getLogId()}"></td>
+                <td th:if="${log instanceof T(com.team14.clientProject.loggingSystem.CommunicationLog)}" th:text="${log.getApplicantId}"></td>
+                <td th:unless="${log instanceof T(com.team14.clientProject.loggingSystem.CommunicationLog)}"></td>
+                <td th:if="${log instanceof T(com.team14.clientProject.loggingSystem.CommunicationLog)}" th:text="${log.getCommunicationType()}"></td>
+                <td th:unless="${log instanceof T(com.team14.clientProject.loggingSystem.CommunicationLog)}"></td>
+                <td th:text="${log.getActionTaken()}"></td>
+                <td th:if="${log instanceof T(com.team14.clientProject.loggingSystem.CommunicationLog)}" th:text="${log.getNotes()}"></td>
+                <td th:unless="${log instanceof T(com.team14.clientProject.loggingSystem.CommunicationLog)}" th:text="${log.getNotes()}"></td>
+                <td th:text="${log.getTimestamp()}"></td>
+            </tr>
+
+            </tbody>
+        </table>
+        <div class="userDetails-actions">
+            <a th:href="@{/admin}" class="userDetails-button-back" th:text="#{user.details.back}"></a>
+        </div>
+    </main>
+</div>
+<div th:replace="~{fragments/footer :: footer-links}"></div>
+<div th:replace="~{fragments/footer :: bootstrap-js}"></div>
+</body>
+</html>

@@ -19,10 +19,10 @@ values
 -- Populate the Applicants table with NHS-related data
 insert into applicants (firstName, lastName, location, email, phoneNumber, eventAttended, skill)
 values
-    ('Sarah', 'Connor', 'Cardiff', 'kirill.akbulatov@pm.me', '1234567890', 'NHS Careers Fair', 'Healthcare, Nursing'),
-    ('John', 'Doe', 'Swansea', 'kirill.spam1@gmail.com', '2345678901', 'NHS Recruitment Day', 'Healthcare, Public Health'),
-    ('Jane', 'Smith', 'Newport', 'ayushyj04@gmail.com', '3456789012', 'Health Conference', 'Nursing, Midwifery'),
-    ('Mike', 'Ross', 'Wrexham', 'mross|@example.com', '4567890123', 'NHS Recruitment', 'Clinical Research, Pharmacy'),
+    ('Sarah', 'Connor', 'Cardiff', 'kirill.akbulatv@pm.me', '1234567890', 'NHS Careers Fair', 'Healthcare, Nursing'),
+    ('John', 'Doe', 'Swansea', 'freddythemole@hotmail.co.uk', '2345678901', 'NHS Recruitment Day', 'Healthcare, Public Health'),
+    ('Jane', 'Smith', 'Newport', 'ayushy04@gmail.com', '3456789012', 'Health Conference', 'Nursing, Midwifery'),
+    ('Mike', 'Ross', 'Wrexham', 'mross@example.com', '4567890123', 'NHS Recruitment', 'Clinical Research, Pharmacy'),
     ('Emily', 'Blunt', 'Bangor', '', '5678901234', 'Health Conference', 'Physiotherapy, Occupational Therapy'),
     ('Chris', 'Evans', 'Llandudno', 'cevans@example.com', '6789012345', 'NHS Careers Fair', 'Healthcare, Radiology'),
     ('Anna', 'Taylor', 'Aberystwyth', 'ataylor@example.com', '7890123456', 'Medical Career Day', 'Healthcare, Emergency Medicine'),
@@ -291,53 +291,52 @@ values
 
 
 -- Populate the communicationLogs table
-insert into communicationlogs (applicantId, userId, timestamp, userType, logType, communicationType, actionTaken, notes)
-VALUES
-    (1, 2, DATE_SUB(NOW(), INTERVAL 10 DAY), 'recruiter', 'communication', 'email', 'emailSent', 'Invitation to interview'),
-    (1, 2, DATE_SUB(NOW(), INTERVAL FLOOR(RAND() * 48) HOUR), 'recruiter', 'detailChange', 'email', 'applicantDetailsChanged', 'changed email address'),
-    (1, 3, DATE_SUB(NOW(), INTERVAL FLOOR(RAND() * 48) HOUR), 'recruiter', 'communication', 'email', 'emailSent', 'Invitation to interview'),
-    (1, 2, DATE_SUB(NOW(), INTERVAL FLOOR(RAND() * 48) HOUR), 'recruiter', 'communication', 'phone', 'emailSent', 'Discussed application details'),
-    (1, 3, DATE_SUB(NOW(), INTERVAL FLOOR(RAND() * 48) HOUR), 'recruiter', 'detailChange', 'email', 'applicantDetailsChanged', 'Updated phone number'),
-    (1, 4, DATE_SUB(NOW(), INTERVAL FLOOR(RAND() * 48) HOUR), 'recruiter', 'communication', 'text', 'applicantAdded', 'Sent confirmation of registration'),
-    (1, 5, DATE_SUB(NOW(), INTERVAL FLOOR(RAND() * 48) HOUR), 'recruiter', 'detailChange', 'person', 'applicantDetailsChanged', 'Changed event attended information'),
-    (1, 2, DATE_SUB(NOW(), INTERVAL FLOOR(RAND() * 48) HOUR), 'recruiter', 'communication', 'phone', 'note', 'Provided additional instructions for interview'),
-    (1, 3, DATE_SUB(NOW(), INTERVAL FLOOR(RAND() * 48) HOUR), 'recruiter', 'communication', 'person', 'applicantRemoved', 'Discussed withdrawal of application'),
-    (2, 4, DATE_SUB(NOW(), INTERVAL FLOOR(RAND() * 48) HOUR), 'recruiter', 'detailChange', 'email', 'applicantDetailsChanged', 'New applicant profile created'),
-    (2, 5, DATE_SUB(NOW(), INTERVAL FLOOR(RAND() * 48) HOUR), 'recruiter', 'communication', 'text', 'emailSent', 'Sent final offer email'),
-    (2, 2, DATE_SUB(NOW(), INTERVAL FLOOR(RAND() * 48) HOUR), 'recruiter', 'detailChange', 'person', 'applicantDetailsChanged', 'Updated applicant skills'),
-    (3, 3, DATE_SUB(NOW(), INTERVAL FLOOR(RAND() * 48) HOUR), 'recruiter', 'communication', 'email', 'note', 'Notified applicant about next steps'),
-    (4, 4, DATE_SUB(NOW(), INTERVAL FLOOR(RAND() * 48) HOUR), 'recruiter', 'communication', 'phone', 'applicantAdded', 'Applicant confirmed availability for interview'),
-    (5, 5, DATE_SUB(NOW(), INTERVAL FLOOR(RAND() * 48) HOUR), 'recruiter', 'communication', 'person', 'emailSent', 'Shared job description details'),
-    (6, 2, DATE_SUB(NOW(), INTERVAL FLOOR(RAND() * 48) HOUR), 'recruiter', 'detailChange', 'email', 'note', 'Added a note regarding applicant follow-up'),
-    (7, 3, DATE_SUB(NOW(), INTERVAL FLOOR(RAND() * 48) HOUR), 'recruiter', 'communication', 'phone', 'applicantRemoved', 'Applicant declined job offer'),
-    (8, 4, DATE_SUB(NOW(), INTERVAL FLOOR(RAND() * 48) HOUR), 'recruiter', 'communication', 'text', 'emailSent', 'Reminder for upcoming assessment center'),
-    (9, 5, DATE_SUB(NOW(), INTERVAL FLOOR(RAND() * 48) HOUR), 'recruiter', 'detailChange', 'person', 'applicantDetailsChanged', 'Corrected spelling in applicant name'),
-    (10, 2, DATE_SUB(NOW(), INTERVAL FLOOR(RAND() * 48) HOUR), 'recruiter', 'communication', 'person', 'emailSent', 'In-person interview invitation sent');
-
+# insert into communicationlogs (applicantId, userId, timestamp, userType, logType, communicationType, actionTaken, notes)
+# VALUES
+#     (1, 2, DATE_SUB(NOW(), INTERVAL 10 DAY), 'recruiter', 'communication', 'email', 'emailSent', 'Invitation to interview'),
+#     (1, 2, DATE_SUB(NOW(), INTERVAL FLOOR(RAND() * 48) HOUR), 'recruiter', 'detailChange', 'email', 'applicantDetailsChanged', 'changed email address'),
+#     (1, 3, DATE_SUB(NOW(), INTERVAL FLOOR(RAND() * 48) HOUR), 'recruiter', 'communication', 'email', 'emailSent', 'Invitation to interview'),
+#     (1, 2, DATE_SUB(NOW(), INTERVAL FLOOR(RAND() * 48) HOUR), 'recruiter', 'communication', 'phone', 'emailSent', 'Discussed application details'),
+#     (1, 3, DATE_SUB(NOW(), INTERVAL FLOOR(RAND() * 48) HOUR), 'recruiter', 'detailChange', 'email', 'applicantDetailsChanged', 'Updated phone number'),
+#     (1, 4, DATE_SUB(NOW(), INTERVAL FLOOR(RAND() * 48) HOUR), 'recruiter', 'communication', 'text', 'applicantAdded', 'Sent confirmation of registration'),
+#     (1, 5, DATE_SUB(NOW(), INTERVAL FLOOR(RAND() * 48) HOUR), 'recruiter', 'detailChange', 'person', 'applicantDetailsChanged', 'Changed event attended information'),
+#     (1, 2, DATE_SUB(NOW(), INTERVAL FLOOR(RAND() * 48) HOUR), 'recruiter', 'communication', 'phone', 'note', 'Provided additional instructions for interview'),
+#     (1, 3, DATE_SUB(NOW(), INTERVAL FLOOR(RAND() * 48) HOUR), 'recruiter', 'communication', 'person', 'applicantRemoved', 'Discussed withdrawal of application'),
+#     (2, 4, DATE_SUB(NOW(), INTERVAL FLOOR(RAND() * 48) HOUR), 'recruiter', 'detailChange', 'email', 'applicantDetailsChanged', 'New applicant profile created'),
+#     (2, 5, DATE_SUB(NOW(), INTERVAL FLOOR(RAND() * 48) HOUR), 'recruiter', 'communication', 'text', 'emailSent', 'Sent final offer email'),
+#     (2, 2, DATE_SUB(NOW(), INTERVAL FLOOR(RAND() * 48) HOUR), 'recruiter', 'detailChange', 'person', 'applicantDetailsChanged', 'Updated applicant skills'),
+#     (3, 3, DATE_SUB(NOW(), INTERVAL FLOOR(RAND() * 48) HOUR), 'recruiter', 'communication', 'email', 'note', 'Notified applicant about next steps'),
+#     (4, 4, DATE_SUB(NOW(), INTERVAL FLOOR(RAND() * 48) HOUR), 'recruiter', 'communication', 'phone', 'applicantAdded', 'Applicant confirmed availability for interview'),
+#     (5, 5, DATE_SUB(NOW(), INTERVAL FLOOR(RAND() * 48) HOUR), 'recruiter', 'communication', 'person', 'emailSent', 'Shared job description details'),
+#     (6, 2, DATE_SUB(NOW(), INTERVAL FLOOR(RAND() * 48) HOUR), 'recruiter', 'detailChange', 'email', 'note', 'Added a note regarding applicant follow-up'),
+#     (7, 3, DATE_SUB(NOW(), INTERVAL FLOOR(RAND() * 48) HOUR), 'recruiter', 'communication', 'phone', 'applicantRemoved', 'Applicant declined job offer'),
+#     (8, 4, DATE_SUB(NOW(), INTERVAL FLOOR(RAND() * 48) HOUR), 'recruiter', 'communication', 'text', 'emailSent', 'Reminder for upcoming assessment center'),
+#     (9, 5, DATE_SUB(NOW(), INTERVAL FLOOR(RAND() * 48) HOUR), 'recruiter', 'detailChange', 'person', 'applicantDetailsChanged', 'Corrected spelling in applicant name'),
+#     (10, 2, DATE_SUB(NOW(), INTERVAL FLOOR(RAND() * 48) HOUR), 'recruiter', 'communication', 'person', 'emailSent', 'In-person interview invitation sent');
+#
 
 -- populate the systemLogs table
-INSERT INTO systemLogs (systemLogId, userId, actionTaken, timestamp)
-VALUES
-    (1,2, 'login',DATE_SUB(NOW(), INTERVAL FLOOR(RAND() * 48) DAY)),
-    (2,3, 'login', DATE_SUB(NOW(), INTERVAL FLOOR(RAND() * 48) HOUR)),
-    (3,4, 'login', DATE_SUB(NOW(), INTERVAL FLOOR(RAND() * 48) HOUR)),
-    (4,5, 'login', DATE_SUB(NOW(), INTERVAL FLOOR(RAND() * 48) HOUR)),
-    (5,6, 'login', DATE_SUB(NOW(), INTERVAL FLOOR(RAND() * 48) HOUR)),
-    (6,7, 'login', DATE_SUB(NOW(), INTERVAL FLOOR(RAND() * 48) HOUR)),
-    (7,8, 'login', DATE_SUB(NOW(), INTERVAL FLOOR(RAND() * 48) HOUR)),
-    (8,9, 'login', DATE_SUB(NOW(), INTERVAL FLOOR(RAND() * 48) HOUR)),
-    (9,10, 'login', DATE_SUB(NOW(), INTERVAL FLOOR(RAND() * 48) HOUR)),
-    (10,2, 'logout', DATE_SUB(NOW(), INTERVAL FLOOR(RAND() * 48) HOUR)),
-    (11,3, 'logout', DATE_SUB(NOW(), INTERVAL FLOOR(RAND() * 48) HOUR)),
-    (12,4, 'logout', DATE_SUB(NOW(), INTERVAL FLOOR(RAND() * 48) HOUR)),
-    (13,5, 'logout', DATE_SUB(NOW(), INTERVAL FLOOR(RAND() * 48) HOUR)),
-    (14,6, 'logout', DATE_SUB(NOW(), INTERVAL FLOOR(RAND() * 48) HOUR)),
-    (15,7, 'logout', DATE_SUB(NOW(), INTERVAL FLOOR(RAND() * 48) HOUR)),
-    (16,8, 'logout', DATE_SUB(NOW(), INTERVAL FLOOR(RAND() * 48) HOUR)),
-    (17,9, 'logout', DATE_SUB(NOW(), INTERVAL FLOOR(RAND() * 48) HOUR)),
-    (18,10, 'logout', DATE_SUB(NOW(), INTERVAL FLOOR(RAND() * 48) HOUR));
+# INSERT INTO systemLogs (systemLogId, userId, actionTaken, timestamp)
+# VALUES
+#     (1, 1, 'login', DATE_SUB(NOW(), INTERVAL 20 HOUR)),
+#     (2, 1, 'logout', DATE_SUB(NOW(), INTERVAL 18 HOUR)),
+#     (3, 2, 'login', DATE_SUB(NOW(), INTERVAL 16 HOUR)),
+#     (4, 2, 'logout', DATE_SUB(NOW(), INTERVAL 14 HOUR)),
+#     (5, 3, 'login', DATE_SUB(NOW(), INTERVAL 12 HOUR)),
+#     (6, 3, 'logout', DATE_SUB(NOW(), INTERVAL 10 HOUR)),
+#     (7, 4, 'login', DATE_SUB(NOW(), INTERVAL 8 HOUR)),
+#     (8, 4, 'logout', DATE_SUB(NOW(), INTERVAL 6 HOUR)),
+#     (9, 5, 'login', DATE_SUB(NOW(), INTERVAL 4 HOUR)),
+#     (10, 5, 'logout', DATE_SUB(NOW(), INTERVAL 2 HOUR)),
+#     (11, 6, 'login', DATE_SUB(NOW(), INTERVAL 2 HOUR)),
+#     (12, 6, 'logout', DATE_SUB(NOW(), INTERVAL 0 HOUR)),
+#     (13, 7, 'login', DATE_SUB(NOW(), INTERVAL 2 HOUR)),
+#     (14, 7, 'logout', DATE_SUB(NOW(), INTERVAL 0 HOUR)),
+#     (15, 8, 'login', DATE_SUB(NOW(), INTERVAL 0 HOUR)),
+#     (16, 9, 'logout', DATE_SUB(NOW(), INTERVAL 0 HOUR));
+#
 
 
 
 
-DESCRIBE users;
+    DESCRIBE users;

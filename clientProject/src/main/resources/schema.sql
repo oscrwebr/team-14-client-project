@@ -77,7 +77,7 @@ create table if not exists applicantPreferences
 create table if not exists communicationLogs(
     logId              int auto_increment primary key,
     applicantId        int null,
-    userId         int not null DEFAULT 1,
+    userId         varchar(50) default 'System',
     timestamp       timestamp default current_timestamp,
     userType        enum('admin', 'recruiter') not null DEFAULT 'recruiter',
     logType        enum('communication', 'detailChange') not null,
@@ -89,9 +89,11 @@ create table if not exists communicationLogs(
 -- System Logs Table
 create table if not exists systemLogs(
                                          systemLogId              int auto_increment primary key,
-                                         userId          int not null,
-                                         actionTaken          enum('login', 'logout', 'addedUser', 'removedUser', 'changedRole', 'other'),
-                                         timestamp   datetime default current_timestamp
+                                         userId          varchar(50) default 'System',
+                                         actionTaken          enum('login', 'logout', 'addedUser', 'removedUser', 'changedRole', 'other', 'traversal'),
+                                         timestamp   datetime default current_timestamp,
+                                         notes           varchar(225) default ' '
+
 ) engine = InnoDB;
 
 DESCRIBE users;

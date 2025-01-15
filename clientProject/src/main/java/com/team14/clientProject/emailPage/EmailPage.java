@@ -63,8 +63,8 @@ public class EmailPage {
     public ModelAndView sendEmails(@RequestParam("emailIds") List<String> emailIds) {
         ModelAndView modelAndView = new ModelAndView("email/selector");
         String subject = "Test Subject to Your Multiple Emails";
-        String htmlBody = "<html><body><h1>An email has been sent to multiple email addresses.</h1><img src='cid:logo'></body></html>";
-        String logoPath = "src/main/resources/static/images/dhcw.png";
+        String htmlBody = "<html><body><h1>An email has been sent to multiple email addresses.</h1><img src='/images/NhsWales.JPEG'></body></html>";
+        String logoPath = "";
 
         // Send emails and get alert messages
         String alertMessage = emailServiceHandler.sendEmails(emailIds, subject, htmlBody, logoPath);
@@ -104,7 +104,7 @@ public class EmailPage {
             return modelAndView;
         }
 
-        String logoPath = "src/main/resources/static/images/dhcw.png";
+        String logoPath = "";
 
         if (emailIds == null || emailIds.isEmpty()) {
             modelAndView.addObject("alertMessage", "Please select at least one recipient.");

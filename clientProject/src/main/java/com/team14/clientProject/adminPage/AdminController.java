@@ -23,9 +23,7 @@ public class AdminController {
     private CommunicationLogRepositoryImpl communicationLogRepository;
 
     private final AdminService adminService;
-    private List<CommunicationLog> communicationLogs;
-    private List<SystemLog> systemLogs;
-    private List<Object> combinedLogs;
+
 
     @Autowired
     public AdminController(AdminService adminService) {
@@ -37,18 +35,8 @@ public class AdminController {
         ModelAndView modelAndView = new ModelAndView("admin/admin");
         List<User> users = adminService.getAllUsers();
         modelAndView.addObject("users", users);
-        communicationLogs = communicationLogRepository.getLogs();
-        systemLogs = systemLogRepository.getLogs();
-        combinedLogs = new ArrayList<>();
-        combinedLogs.addAll(communicationLogs);
-        combinedLogs.addAll(systemLogs);
-        combinedLogs.sort((o1, o2) -> {
-            Timestamp t1 = o1 instanceof CommunicationLog ? Timestamp.valueOf(((CommunicationLog) o1).getTimestamp()) : Timestamp.valueOf(((SystemLog) o1).getTimestamp());
-            Timestamp t2 = o2 instanceof CommunicationLog ? Timestamp.valueOf(((CommunicationLog) o2).getTimestamp()) : Timestamp.valueOf(((SystemLog) o2).getTimestamp());
-            return t2.compareTo(t1);
-        });
-        modelAndView.addObject("logs", combinedLogs);
-
+        modelAndView.addObject("logs", adminService.getCombinedLogs());
+        modelAndView.addObject("systemLogs", systemLogRepository.getLogoutLogs());
 
         return modelAndView;
     }
@@ -63,6 +51,17 @@ public class AdminController {
         User user = adminService.getUserById(id);
         modelAndView.addObject("user", user);
         return modelAndView;
+    }
+    @GetMapping("/admin/session/user/{id}/{logoutTime}")
+    public ModelAndView getUserDetailsPage(@PathVariable("id") int id, @PathVariable("logoutTime") String logoutTime) {
+        try{
+        ModelAndView modelAndView = new ModelAndView("admin/userSession");
+        modelAndView.addObject("user", adminService.getUserById(id));
+        modelAndView.addObject("logs", adminService.getSessionLogs(id, logoutTime));
+        return modelAndView;}
+        catch (Exception e){
+            return new ModelAndView("redirect:/admin");
+        }
     }
 
     @GetMapping("/admin/add")

@@ -8,4 +8,5 @@ public interface AdminRepository {
     User addUser(User user);
     void deleteUserById(int id);
     String validatePassword(String password);
+    User findByUsername(String username);
 }

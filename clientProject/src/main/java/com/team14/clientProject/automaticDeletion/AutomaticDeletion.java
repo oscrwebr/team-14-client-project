@@ -42,7 +42,7 @@ public class AutomaticDeletion {
         if (!emailsToWarn.isEmpty()) {
             System.out.println("Sending warning email to: " + emailsToWarn.get(0));
             String htmlBody = "<p>Your information will be automatically deleted in 1 month in accordance with company policy. Please contact us to retain your information.</p>";
-            emailService.sendWarningEmail(emailsToWarn.get(0), "Warning: Your information will be deleted soon", htmlBody, "src/main/resources/static/images/dhcw.png");
+            emailService.sendWarningEmail(emailsToWarn.get(0), "Warning: Your information will be deleted soon", htmlBody, "");
             emailSent = true;
             TimeUnit.SECONDS.sleep(15);
 
