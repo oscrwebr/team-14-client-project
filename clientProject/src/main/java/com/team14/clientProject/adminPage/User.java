@@ -6,6 +6,7 @@ import jakarta.validation.constraints.Pattern;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import java.time.LocalDateTime;
 
@@ -21,6 +22,7 @@ public class User {
     @NotEmpty(message = "Username cannot be empty")
     private String username;
 
+    @Setter
     @NotEmpty(message = "Password cannot be empty")
     @Pattern(regexp = "^[a-zA-Z0-9]{8,}$", message = "Password must be at least 8 characters long and alphanumeric")
     private String password;

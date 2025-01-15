@@ -5,11 +5,20 @@ import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.jdbc.core.simple.SimpleJdbcInsert;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Repository;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 @Repository
 public class AdminRepositoryImpl implements AdminRepository {
@@ -65,6 +74,12 @@ public class AdminRepositoryImpl implements AdminRepository {
         if (count > 0) {
             throw new IllegalArgumentException("A user with this username already exists");
         }
+        try {
+            user.setPassword(validatePassword(user.getPassword()));
+        } catch (IllegalArgumentException e) {
+            throw new IllegalArgumentException(e.getMessage());
+        }
+
 
         // Define the SQL Insert statement
         String insertQuery = "INSERT INTO users (username, passwordHashed, firstName, lastName, role, lastLogin, createdAt) " +
@@ -100,6 +115,40 @@ public class AdminRepositoryImpl implements AdminRepository {
 
         String sql = "DELETE FROM users WHERE ID = ?";
         jdbcTemplate.update(sql, ID);
+    }
+    @Override
+    public String validatePassword(String password) {
+        if (password.length() < 8) {
+            throw new IllegalArgumentException("Password must be at least 8 characters long");
+        }
+        if (!password.matches(".*\\d.*")) {
+            throw new IllegalArgumentException("Password must contain at least one digit");
+        }
+        if (!password.matches(".*[a-z].*")) {
+            throw new IllegalArgumentException("Password must contain at least one lowercase letter");
+        }
+        if (!password.matches(".*[A-Z].*")) {
+            throw new IllegalArgumentException("Password must contain at least one uppercase letter");
+        }
+        if (isCommonPassword(password)) {
+            throw new IllegalArgumentException("Password is too common");
+        }
+        BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
+        password = encoder.encode(password);
+        return password;
+    }
+    private boolean isCommonPassword(String password) {
+        try (InputStream inputStream = getClass().getClassLoader().getResourceAsStream("static/commonPasswords.txt")) {
+            if (inputStream == null) {
+                throw new RuntimeException("Common passwords file not found.");
+            }
+            List<String> commonPasswords = new BufferedReader(new InputStreamReader(inputStream))
+                    .lines()
+                    .collect(Collectors.toList());
+            return commonPasswords.contains(password.toLowerCase());
+        } catch (IOException e) {
+            throw new RuntimeException("Error reading common passwords file", e);
+        }
     }
     @Override
     public User findByUsername(String username) {

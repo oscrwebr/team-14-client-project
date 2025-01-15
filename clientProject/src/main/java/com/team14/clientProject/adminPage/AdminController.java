@@ -44,6 +44,10 @@ public class AdminController {
     @GetMapping("/admin/user/{id}")
     public ModelAndView getUserDetailsPage(@PathVariable("id") int id) {
         ModelAndView modelAndView = new ModelAndView("admin/userDetails");
+        if (adminService.getUserById(id) == null) {
+            modelAndView.setViewName("redirect:/admin");
+            return modelAndView;
+        }
         User user = adminService.getUserById(id);
         modelAndView.addObject("user", user);
         return modelAndView;
@@ -69,15 +73,18 @@ public class AdminController {
     }
 
     @PostMapping("/admin/add")
-    public String addUser(@ModelAttribute User user, RedirectAttributes redirectAttributes) {
+    public ModelAndView addUser(@ModelAttribute User user) {
+        ModelAndView modelAndView = new ModelAndView("/admin/addNewUser");
         try {
             adminService.addUser(user);
-            redirectAttributes.addFlashAttribute("success", "User added successfully!");
+            modelAndView.addObject("error", "User added successfully!");
         } catch (Exception e) {
-            redirectAttributes.addFlashAttribute("error", "Failed to add user: " + e.getMessage());
+            modelAndView.addObject("error", e.getMessage());
         }
-        return "redirect:/admin";
+        return modelAndView;
     }
+
+
 
     @PostMapping("/admin/user/delete/{id}")
     public String deleteUser(@PathVariable("id") int id, RedirectAttributes redirectAttributes) {

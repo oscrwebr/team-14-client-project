@@ -7,6 +7,7 @@ public interface AdminService {
     User getUserById(int id);
     User addUser(User user);
     void deleteUser(int id);
+    String validatePassword(String password);
     List<Object> getSessionLogs(int userId, String logoutTime);
-    List<Object> getCombinedLogs();
+
 }
