@@ -22,7 +22,8 @@ public class SystemLogRepositoryImpl implements SystemLogRepository {
             return new SystemLog(rs.getInt("systemLogId"),
                     rs.getInt("userId"),
                     rs.getString("actionTaken"),
-                    rs.getString("timestamp"));
+                    rs.getString("timestamp"),
+                    rs.getString("notes"));
         };
     }
 
@@ -38,6 +39,7 @@ public class SystemLogRepositoryImpl implements SystemLogRepository {
         String sql = "INSERT INTO systemLogs (userId, actionTaken) VALUES (?, 'addedUser')";
         jdbcTemplate.update(sql, getUserIdFromUsername(SecurityConfig.getCurrentUserId()));
     }
+
 
     @Override
     public void removeUserLog(int UserID) {
@@ -79,5 +81,9 @@ public class SystemLogRepositoryImpl implements SystemLogRepository {
     public void clearLogs() {
         String sql = "DELETE FROM systemLogs";
         jdbcTemplate.update(sql);
+    }
+    public void addTraversalLog(String notes) {
+        String sql = "INSERT INTO systemLogs (userId, actionTaken, notes) VALUES (?, 'traversal', ?)";
+        jdbcTemplate.update(sql, getUserIdFromUsername(SecurityConfig.getCurrentUserId()), notes);
     }
 }

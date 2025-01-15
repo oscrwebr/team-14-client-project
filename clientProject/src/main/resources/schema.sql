@@ -90,8 +90,10 @@ create table if not exists communicationLogs(
 create table if not exists systemLogs(
                                          systemLogId              int auto_increment primary key,
                                          userId          varchar(50) default 'System',
-                                         actionTaken          enum('login', 'logout', 'addedUser', 'removedUser', 'changedRole', 'other'),
-                                         timestamp   datetime default current_timestamp
+                                         actionTaken          enum('login', 'logout', 'addedUser', 'removedUser', 'changedRole', 'other', 'traversal'),
+                                         timestamp   datetime default current_timestamp,
+                                         notes           varchar(225) default ' '
+
 ) engine = InnoDB;
 
 DESCRIBE users;

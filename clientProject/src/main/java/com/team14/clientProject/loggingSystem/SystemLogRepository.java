@@ -12,4 +12,5 @@ public interface SystemLogRepository {
     List<SystemLog> getLogoutLogs();
     List<SystemLog> getSessionLogs(int userId, String loginTime, String logoutTime);
     void clearLogs();
+    void addTraversalLog(String notes);
 }
