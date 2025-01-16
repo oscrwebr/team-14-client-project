@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Me</title>
+    <link th:replace="fragments/header :: bootstrap-css"/>
+    <link rel="stylesheet" type="text/css" href="css/homeStyle.css"/>
+    <link rel="stylesheet" type="text/css" href="css/profilePageStyling.css">
+</head>
+<body>
+<div th:replace="~{fragments/header :: header}"/>
+<div class="card">
+    <h1>Profile of <span th:text="${user.username}"></span></h1>
+
+    <p>First Name: <span th:text="${user.firstName}"></span></p>
+
+    <p>Last Name: <span th:text="${user.lastName}"></span></p>
+
+    <p>Role: <span th:text="${user.role}"></span></p>
+
+    <div class="heading">
+        <a class="btn btn-info" th:href="@{/home}" th:text="#{user.profile.back}"></a>
+    </div>
+</div>
+
+
+
+
+<div th:replace="~{fragments/footer :: footer-links}"></div>
+<div th:replace="~{fragments/footer :: bootstrap-js}"></div>
+</body>
+</html>
