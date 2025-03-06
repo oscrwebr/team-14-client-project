@@ -31,7 +31,7 @@ public class AdminServiceImpl implements AdminService {
         this.adminRepository = adminRepository;
     }
 
-    @Autowired
+
     public void init() {
         communicationLogs = communicationLogRepository.getLogs();
         systemLogs = systemLogRepository.getLogs();
