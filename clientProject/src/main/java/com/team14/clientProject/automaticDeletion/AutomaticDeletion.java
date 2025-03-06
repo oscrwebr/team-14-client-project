@@ -51,8 +51,8 @@ public class AutomaticDeletion {
                     "d.currentPosition, d.status, a.skill, a.eventAttended, " +
                     "p.SubscribeToNewsLetter, p.SubscribeToBulletins, p.SubscribeToJobUpdates " +
                     "FROM applicants a " +
-                    "LEFT JOIN applicantpreferences p ON a.Id = p.applicationId " +
-                    "LEFT JOIN applicationdetails d ON a.Id = d.applicationId " +
+                    "LEFT JOIN applicantPreferences p ON a.Id = p.applicationId " +
+                    "LEFT JOIN applicationDetails d ON a.Id = d.applicationId " +
                     "WHERE a.createdAt < ? LIMIT 1";
             int rowsMoved = jdbcTemplate.update(moveSql, thirtySecondsAgo);
             System.out.println("Rows moved to deletedApplicants: " + rowsMoved);

@@ -8,7 +8,9 @@ drop table if exists communicationslogs;
 drop table if exists systemLogs;
 
 drop table if exists applicantpreferences;
+drop table if exists applicantPreferences;
 drop table if exists applicationdetails;
+drop table if exists applicationDetails;
 
 
 drop table if exists users;

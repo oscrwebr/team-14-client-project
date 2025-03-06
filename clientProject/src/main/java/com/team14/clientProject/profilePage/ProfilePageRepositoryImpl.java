@@ -59,8 +59,8 @@ public class ProfilePageRepositoryImpl implements ProfilePageRepository {
         String sql =  "SELECT a.*, p.SubscribeToNewsLetter, p.SubscribeToBulletins, p.SubscribeToJobUpdates," +
                 "d.currentPosition, d.status " +
                 "FROM applicants a " +
-                "LEFT JOIN applicantpreferences p ON a.Id = p.Id " +
-                "LEFT JOIN applicationdetails d ON a.Id = d.Id";
+                "LEFT JOIN applicantPreferences p ON a.Id = p.Id " +
+                "LEFT JOIN applicationDetails d ON a.Id = d.Id";
 
         return jdbcTemplate.query(sql, ProfileRowMapper);
     }
@@ -71,8 +71,8 @@ public class ProfilePageRepositoryImpl implements ProfilePageRepository {
         String sql = "SELECT a.*, p.SubscribeToNewsLetter, p.SubscribeToBulletins, p.SubscribeToJobUpdates," +
                 "d.currentPosition, d.status " +
                 "FROM applicants a " +
-                "LEFT JOIN applicantpreferences p ON a.Id = p.Id " +
-                "LEFT JOIN applicationdetails d ON a.Id = d.Id " +
+                "LEFT JOIN applicantPreferences p ON a.Id = p.Id " +
+                "LEFT JOIN applicationDetails d ON a.Id = d.Id " +
                 "WHERE a.id = ?";
         return jdbcTemplate.queryForObject(sql, ProfileRowMapper, id);
     }
@@ -85,8 +85,8 @@ public class ProfilePageRepositoryImpl implements ProfilePageRepository {
         String sql = "SELECT a.*, p.SubscribeToNewsLetter, p.SubscribeToBulletins, p.SubscribeToJobUpdates," +
                 "d.currentPosition, d.status " +
                 "FROM applicants a " +
-                "LEFT JOIN applicantpreferences p ON a.Id = p.Id " +
-                "LEFT JOIN applicationdetails d ON a.Id = d.Id " +
+                "LEFT JOIN applicantPreferences p ON a.Id = p.Id " +
+                "LEFT JOIN applicationDetails d ON a.Id = d.Id " +
                 "ORDER BY a.firstName ASC";
         return jdbcTemplate.query(sql, ProfileRowMapper);
     }
@@ -95,8 +95,8 @@ public class ProfilePageRepositoryImpl implements ProfilePageRepository {
         String sql = "SELECT a.*, p.SubscribeToNewsLetter, p.SubscribeToBulletins, p.SubscribeToJobUpdates," +
                 "d.currentPosition, d.status " +
                 "FROM applicants a " +
-                "LEFT JOIN applicantpreferences p ON a.Id = p.Id " +
-                "LEFT JOIN applicationdetails d ON a.Id = d.Id " +
+                "LEFT JOIN applicantPreferences p ON a.Id = p.Id " +
+                "LEFT JOIN applicationDetails d ON a.Id = d.Id " +
                 "ORDER BY a.firstName DESC";
         return jdbcTemplate.query(sql, ProfileRowMapper);
     }
@@ -105,8 +105,8 @@ public class ProfilePageRepositoryImpl implements ProfilePageRepository {
         String sql = "SELECT a.*, p.SubscribeToNewsLetter, p.SubscribeToBulletins, p.SubscribeToJobUpdates," +
                 "d.currentPosition, d.status " +
                 "FROM applicants a " +
-                "LEFT JOIN applicantpreferences p ON a.Id = p.Id " +
-                "LEFT JOIN applicationdetails d ON a.Id = d.Id " +
+                "LEFT JOIN applicantPreferences p ON a.Id = p.Id " +
+                "LEFT JOIN applicationDetails d ON a.Id = d.Id " +
                 "ORDER BY a.lastName ASC";
         return jdbcTemplate.query(sql, ProfileRowMapper);
     }
@@ -115,8 +115,8 @@ public class ProfilePageRepositoryImpl implements ProfilePageRepository {
         String sql = "SELECT a.*, p.SubscribeToNewsLetter, p.SubscribeToBulletins, p.SubscribeToJobUpdates," +
                 "d.currentPosition, d.status " +
                 "FROM applicants a " +
-                "LEFT JOIN applicantpreferences p ON a.Id = p.Id " +
-                "LEFT JOIN applicationdetails d ON a.Id = d.Id " +
+                "LEFT JOIN applicantPreferences p ON a.Id = p.Id " +
+                "LEFT JOIN applicationDetails d ON a.Id = d.Id " +
                 "ORDER BY a.lastName DESC";
         return jdbcTemplate.query(sql, ProfileRowMapper);
     }
@@ -124,8 +124,8 @@ public class ProfilePageRepositoryImpl implements ProfilePageRepository {
         String sql = "SELECT a.*, p.SubscribeToNewsLetter, p.SubscribeToBulletins, p.SubscribeToJobUpdates," +
                 "d.currentPosition, d.status " +
                 "FROM applicants a " +
-                "LEFT JOIN applicantpreferences p ON a.Id = p.Id " +
-                "LEFT JOIN applicationdetails d ON a.Id = d.Id " +
+                "LEFT JOIN applicantPreferences p ON a.Id = p.Id " +
+                "LEFT JOIN applicationDetails d ON a.Id = d.Id " +
                 "GROUP BY a.location";
         return jdbcTemplate.query(sql, ProfileRowMapper);
     }
@@ -133,8 +133,8 @@ public class ProfilePageRepositoryImpl implements ProfilePageRepository {
         String sql = "SELECT a.*, p.SubscribeToNewsLetter, p.SubscribeToBulletins, p.SubscribeToJobUpdates," +
                 "d.currentPosition, d.status " +
                 "FROM applicants a " +
-                "LEFT JOIN applicantpreferences p ON a.Id = p.Id " +
-                "LEFT JOIN applicationdetails d ON a.Id = d.Id " +
+                "LEFT JOIN applicantPreferences p ON a.Id = p.Id " +
+                "LEFT JOIN applicationDetails d ON a.Id = d.Id " +
                 "GROUP BY a.eventAttended";
         return jdbcTemplate.query(sql, ProfileRowMapper);
     }
@@ -150,12 +150,12 @@ public class ProfilePageRepositoryImpl implements ProfilePageRepository {
 
 
     public void updateCvPath(int userId, byte[] cvPath) {
-        String sql = "UPDATE applicationdetails SET cvPath = ? WHERE id = ?";
+        String sql = "UPDATE applicationDetails SET cvPath = ? WHERE id = ?";
         jdbcTemplate.update(sql, cvPath, userId);
     }
 
     public byte[] getCvPath(int userId) {
-        String sql = "SELECT cvPath FROM applicationdetails WHERE id = ?";
+        String sql = "SELECT cvPath FROM applicationDetails WHERE id = ?";
         return jdbcTemplate.queryForObject(sql, byte[].class, userId);
     }
 
@@ -163,8 +163,8 @@ public class ProfilePageRepositoryImpl implements ProfilePageRepository {
         String sql = "SELECT a.*, p.SubscribeToNewsLetter, p.SubscribeToBulletins, p.SubscribeToJobUpdates, " +
                 "d.currentPosition, d.status " +
                 "FROM applicants a " +
-                "LEFT JOIN applicantpreferences p ON a.Id = p.Id " +
-                "LEFT JOIN applicationdetails d ON a.Id = d.Id " +
+                "LEFT JOIN applicantPreferences p ON a.Id = p.Id " +
+                "LEFT JOIN applicationDetails d ON a.Id = d.Id " +
                 "WHERE a.firstName LIKE ? OR a.lastName LIKE ? OR a.location LIKE ? OR a.skill LIKE ? OR a.eventAttended LIKE ? OR d.currentPosition LIKE ?";
         String searchQuery = "%" + query + "%";
         return jdbcTemplate.query(sql, new Object[]{searchQuery, searchQuery, searchQuery, searchQuery, searchQuery, searchQuery}, ProfileRowMapper);
@@ -212,7 +212,7 @@ public class ProfilePageRepositoryImpl implements ProfilePageRepository {
     public List<String> getSubscribedEmails(){
         String sql = "SELECT a.email " +
                 "FROM applicants a " +
-                "JOIN applicantpreferences p ON a.Id = p.Id " +
+                "JOIN applicantPreferences p ON a.Id = p.Id " +
                 "WHERE p.SubscribeToNewsLetter = 'yes'";
 
         return jdbcTemplate.query(sql,(rs, rowNum) -> rs.getString("email"));

@@ -31,7 +31,7 @@ public class CommunicationLogRepositoryImpl implements CommunicationLogRepositor
     }
     @Override
     public List<CommunicationLog> getLogs(){
-        String sql = "SELECT * FROM communicationlogs ORDER BY timestamp DESC";
+        String sql = "SELECT * FROM communicationLogs ORDER BY timestamp DESC";
         return jdbcTemplate.query(sql, CommunicationLogMapper);
     }
 
@@ -39,7 +39,7 @@ public class CommunicationLogRepositoryImpl implements CommunicationLogRepositor
     public void addEmailLog(List<String> thisApplicantId, String emailContent){
         for (String applicantId : thisApplicantId) {
             int applicantIdInt = Integer.parseInt(applicantId);
-            String sql = "INSERT INTO communicationlogs (userId, applicantId, actionTaken, notes) VALUES (?,?, 'emailSent', ?)";
+            String sql = "INSERT INTO communicationLogs (userId, applicantId, actionTaken, notes) VALUES (?,?, 'emailSent', ?)";
             jdbcTemplate.update(sql, getUserIdFromUsername(SecurityConfig.getCurrentUserId()), applicantIdInt, emailContent);
         }
     }
@@ -52,7 +52,7 @@ public class CommunicationLogRepositoryImpl implements CommunicationLogRepositor
     @Override
     public List<CommunicationLog> getLogsByApplicantId(int applicantId){
         System.out.println(applicantId);
-        String sql = "SELECT DISTINCT * FROM communicationlogs WHERE applicantId LIKE ? ORDER BY timestamp DESC";
+        String sql = "SELECT DISTINCT * FROM communicationLogs WHERE applicantId LIKE ? ORDER BY timestamp DESC";
         return jdbcTemplate.query(sql, CommunicationLogMapper, applicantId);
     }
 
@@ -78,7 +78,7 @@ public class CommunicationLogRepositoryImpl implements CommunicationLogRepositor
     }
     @Override
     public void clearLogs(){
-        String sql = "DELETE FROM communicationlogs";
+        String sql = "DELETE FROM communicationLogs";
         jdbcTemplate.update(sql);
     }
 
