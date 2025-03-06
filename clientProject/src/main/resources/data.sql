@@ -199,7 +199,7 @@ values
     (87, 'no', 'yes', 'yes');
 
 -- Populate the Application Details table
-insert into applicationdetails(applicationId, currentPosition, status, CvPath, CoverLetterPath)
+insert into applicationDetails(applicationId, currentPosition, status, CvPath, CoverLetterPath)
 values
     (1, 'Nurse', 'External', NULL, NULL),
     (2, 'Public Health Analyst', 'External', NULL, NULL),
