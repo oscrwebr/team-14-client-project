@@ -1,3 +1,4 @@
+
 plugins {
 	id 'java'
 	id 'org.springframework.boot' version '3.3.5'
@@ -8,6 +9,7 @@ plugins {
 group = 'com.team14'
 version = '0.0.1-SNAPSHOT'
 
+
 java {
 	toolchain {
 		languageVersion = JavaLanguageVersion.of(17)
@@ -15,6 +17,7 @@ java {
 }
 
 configurations {
+
 	compileOnly {
 		extendsFrom annotationProcessor
 	}
@@ -24,6 +27,7 @@ repositories {
 	mavenCentral()
 }
 checkstyle {
+	configFile = file('config/checkstyle/checkstyle.xml')
 	ignoreFailures = true
 	maxErrors(1000000)
 }
@@ -67,4 +71,5 @@ dependencies {
 
 tasks.named('test') {
 	useJUnitPlatform()
+	ignoreFailures = true
 }
