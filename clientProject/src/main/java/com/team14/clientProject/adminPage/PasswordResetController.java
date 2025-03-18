@@ -105,7 +105,7 @@ public class PasswordResetController {
             modelAndView.addObject("error", "Failed to send password reset link.");
         }
 
-        return new ModelAndView("passwordResetForm");
+        return new ModelAndView("redirect:/reset-password");
     }
 
 
@@ -115,7 +115,7 @@ public class PasswordResetController {
             redirectAttributes.addFlashAttribute("error", "Invalid or expired token.");
             return new ModelAndView("redirect:/login");
         }
-        return new ModelAndView("passwordResetForm");
+        return new ModelAndView("redirect:/reset-password");
     }
 
 

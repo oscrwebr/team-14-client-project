@@ -1,0 +1,81 @@
+[33m5efe391[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mbackup-main[m[33m, [m[1;32mmain[m[33m)[m Correcting tests
+[33m59c78ea[m Add password reset functionality
+[33mba88fac[m Including Admin specific header
+[33mab9ebf4[m Adding Validation To the admin page for adding new users
+[33m1e0e0b7[m Updating Password and email for testing
+[33m88c0d3b[m presenting
+[33m3112c2e[m Bugfix
+[33m6e84868[m Merge branch '96-branch-81-tests-add-applicant-by-csv' into 'main'
+[33mab3c470[m tests added for applicant csv functionality
+[33m2b92d24[m Merge branch '99-profilepage-tests' into 'main'
+[33m709d038[m more tests created for ProfilePage, CommunicationLog, SystemLog. Fixed styling for email selectors and fixing of functionality issue with filtering applicants.
+[33m8c38e21[m Merge branch '101-adminpage-tests' into 'main'
+[33mf9ebd8f[m Admin Page test
+[33m97fa769[m Merge branch '100-completing-tests' into 'main'
+[33m4eba83e[m Merge branch '97-final-test-implementations' into 'main'
+[33m97c2777[m[33m ([m[1;31morigin/97-final-test-implementations[m[33m)[m Modified a test
+[33m85f4f11[m Added some tests
+[33m669a797[m Written tests to improve my test coverage
+[33mba4a8c2[m Merge branch '98-fixing-homepage-css' into 'main'
+[33mebfbd02[m fixing of homePage Styling
+[33maed1dac[m Merge branch '97-final-test-implementations' into 'main'
+[33m69223ed[m changing the password for the database
+[33me844348[m Added some tests
+[33m93b8343[m Merge branch '94-as-a-user-i-want-the-application-to-support-multiple-languages-so-that-i-can-use-it-in-the' into 'main'
+[33md24aec3[m removing the comma
+[33m1c2ff9d[m Internationalization to welsh
+[33m5658e57[m Merge branch '94-as-a-user-i-want-the-application-to-support-multiple-languages-so-that-i-can-use-it-in-the' of https://git.cardiff.ac.uk/c23060517/team-14-project-1 into 94-as-a-user-i-want-the-application-to-support-multiple-languages-so-that-i-can-use-it-in-the
+[33mf01dd1d[m added application properties
+[33mc6c8183[m Internationalization to welsh
+[33mbfea04c[m Merge branch 'main' into '94-as-a-user-i-want-the-application-to-support-multiple-languages-so-that-i-can-use-it-in-the'
+[33m83adef4[m Merge branch '81-as-a-user-i-want-to-be-able-to-import-applicants-from-a-csv-file-so-that-i-can-add-multiple' into 'main'
+[33mb06676d[m Internationalization to welsh
+[33m1a1e06b[m extra validation added, tests will be done in other branch
+[33m28eefae[m[33m ([m[1;31morigin/94-as-a-user-i-want-the-application-to-support-multiple-languages-so-that-i-can-use-it-in-the-2[m[33m)[m Merge branch '72-as-a-user-i-want-to-have-a-usable-email-dashboard-so-that-i-can-access-all-email-functionality' into 'main'
+[33mc5473ad[m Changing values in database to allow for displaying features
+[33ma5f908e[m sorted out all css issues in the emailPage and made the dashboard look appeasing and fixed other css related stuff
+[33m8d28178[m pulling from main
+[33m857dc4b[m csv file upload functioning. validation and error handling also present
+[33m1fa78cc[m Merge branch '83-as-a-user-i-want-to-be-able-to-send-an-email-of-the-newsletter-so-that-applicants-who-have' into 'main'
+[33mf6ee183[m Fixing merge error issues
+[33m8f3a488[m Merge branch 'main' into '83-as-a-user-i-want-to-be-able-to-send-an-email-of-the-newsletter-so-that-applicants-who-have'
+[33mbaa979b[m Fixed tests not functioning
+[33m9d490df[m Merge branch '95-fixing-tests-to-fit-with-login-system' into 'main'
+[33m5bae73d[m Merge branch '92-as-a-user-i-want-a-deleted-applicant-to-be-added-to-the-logging-system-so-that-i-can-see-that' into 'main'
+[33m6ed0656[m Merge branch '85-as-a-user-i-want-an-applicant-s-personal-information-to-be-deleted-automatically-after-12-months' into 'main'
+[33mac7cec4[m Merge branch 'main' into '85-as-a-user-i-want-an-applicant-s-personal-information-to-be-deleted-automatically-after-12-months'
+[33m94331a0[m Fixing of accidental merge errors
+[33ma37b37c[m Merge branch '87-as-an-admin-i-want-deleted-users-to-be-stored-in-a-temporary-users-so-that-their-information-can' into 'main'
+[33m2a57d26[m Merge branch 'main' into '87-as-an-admin-i-want-deleted-users-to-be-stored-in-a-temporary-users-so-that-their-information-can'
+[33m88dd19e[m[33m ([m[1;31morigin/95-fixing-tests-to-fit-with-login-system[m[33m)[m Fixing of all tests to work with the login system (Excluding 5 tests related to CV page and 1 test relating to adding applicants). All functionality works
+[33m94c12c4[m Deletions are reflected on the profile page table
+[33m99c1db1[m fixing merge errors
+[33mf2dd3ef[m Final commit
+[33m29e681d[m Added tests for automatic deletion of applicant information
+[33m60ccffb[m fixing merge errors
+[33m5305af6[m Merge branch 'main' into '83-as-a-user-i-want-to-be-able-to-send-an-email-of-the-newsletter-so-that-applicants-who-have'
+[33m11edc6c[m Completed the sending a newsletter page
+[33m1c5d049[m Merge branch '12-as-a-user-i-want-to-be-able-to-log-into-the-application-so-that-i-can-access-functionality' into 'main'
+[33m41b55de[m[33m ([m[1;31morigin/12-as-a-user-i-want-to-be-able-to-log-into-the-application-so-that-i-can-access-functionality[m[33m)[m fixing of login system so all tests are able to run
+[33mf6393d3[m Merge remote-tracking branch 'origin/main'
+[33ma165715[m Changed test so that it passes
+[33m71b26d4[m Dysfunctional
+[33me123285[m Merge branch '89-as-an-admin-i-want-a-dashboard-for-seeing-all-logged-changes-on-the-website-so-that-i-have-an' into 'main'
+[33m8fcd46d[m reduction of logging tables into 1 single table
+[33md6f450f[m Functionality for automatic deletion fully works - checks will run every 15 seconds to check for information older than 30 seconds, if it is older, an email will be sent to warn the user about deletion and then after a further 15 seconds their information will be deleted and stored in a temporary table for a further 30 seconds. ONLY THE FIRST USER IS DELETED TO RETAIN SUFFICIENT DUMMY DATA IN THE TABLE! I chose very small values to make it easier to demonstrate functionality to the client.
+[33m2755049[m Email is sent to the applicant to warn them of the deletion, details moved to the deletedUsers table, check runs every second
+[33m2d6496f[m addition of logging tables to admin page
+[33m0570740[m Progress with automatic deletion of applicant information - a warning email is sent
+[33mede1181[m Merge branch '91-as-an-admin-i-want-the-admin-page-to-be-reformatted-so-that-i-can-efficiently-navigate-manage' into 'main'
+[33mbec081c[m Removed the "List of Users." header
+[33m778bd64[m Css for the admin Page
+[33mf87c430[m Merge branch 'main' of https://git.cardiff.ac.uk/c23060517/team-14-project-1 into 81-as-a-user-i-want-to-be-able-to-import-applicants-from-a-csv-file-so-that-i-can-add-multiple
+[33m2595487[m creating csv form (need to commit to pull from main) no major changes
+[33mbd3c68a[m Merge branch 'main' into '87-as-an-admin-i-want-deleted-users-to-be-stored-in-a-temporary-users-so-that-their-information-can'
+[33mde7b670[m Implemented functionality to store deleted users in a table, and then automatically delete this after a period of time - again 30 seconds
+[33m350ffc5[m[33m ([m[1;31morigin/92-as-a-user-i-want-a-deleted-applicant-to-be-added-to-the-logging-system-so-that-i-can-see-that[m[33m)[m Addition of logging feature for applicant being deleted
+[33m20debf1[m[33m ([m[1;31morigin/91-as-an-admin-i-want-the-admin-page-to-be-reformatted-so-that-i-can-efficiently-navigate-manage-2[m[33m)[m Merge branch '90-as-an-admin-i-want-all-changes-to-the-database-addedd-removed-edited-users-applicants-to-be' into 'main'
+[33m69819c3[m Merge branch 'main' into '90-as-an-admin-i-want-all-changes-to-the-database-addedd-removed-edited-users-applicants-to-be'
+[33m172fa57[m changes
+[33m07da082[m[33m ([m[1;31morigin/90-as-an-admin-i-want-all-changes-to-the-database-addedd-removed-edited-users-applicants-to-be-2[m[33m)[m Resolve merge conflicts
+[33me034848[m Merge branch '84-as-a-user-i-want-to-be-able-to-manually-remove-applicants-so-that-i-can-comply-with-gdpr-if-they' into 'main'
