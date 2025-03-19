@@ -5,5 +5,5 @@ import java.util.List;
 public interface SystemLogRepository {
     List<SystemLog> getLogs();
     void addUserLog();
-    void removeUserLog(int UserId);
+    void removeUserLog(int userId);
 }

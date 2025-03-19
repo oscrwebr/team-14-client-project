@@ -36,7 +36,7 @@ public class AutomaticDeletion {
 
         System.out.println("Checking applicants created before " + thirtySecondsAgo);
 
-        String warnSql = "SELECT email FROM applicants WHERE createdAt < ? LIMIT 1";
+        String warnSql = "select email from applicants where createdAt < ? limit 1";
         List<String> emailsToWarn = jdbcTemplate.queryForList(warnSql, String.class, thirtySecondsAgo);
 
         if (!emailsToWarn.isEmpty()) {
@@ -46,18 +46,18 @@ public class AutomaticDeletion {
             emailSent = true;
             TimeUnit.SECONDS.sleep(15);
 
-            String moveSql = "INSERT INTO deletedApplicants (id, firstName, lastName, location, email, phoneNumber, currentPosition, status, skill, eventAttended, SubscribeToNewsLetter, SubscribeToBulletins, SubscribeToJobUpdates) " +
-                    "SELECT a.id, a.firstName, a.lastName, a.location, a.email, a.phoneNumber, " +
+            String moveSql = "insert into deletedApplicants (id, firstName, lastName, location, email, phoneNumber, currentPosition, status, skill, eventAttended, subscribeToNewsLetter, subscribeToBulletins, subscribeToJobUpdates) " +
+                    "select a.id, a.firstName, a.lastName, a.location, a.email, a.phoneNumber, " +
                     "d.currentPosition, d.status, a.skill, a.eventAttended, " +
                     "p.SubscribeToNewsLetter, p.SubscribeToBulletins, p.SubscribeToJobUpdates " +
-                    "FROM applicants a " +
-                    "LEFT JOIN applicantpreferences p ON a.Id = p.applicationId " +
-                    "LEFT JOIN applicationdetails d ON a.Id = d.applicationId " +
-                    "WHERE a.createdAt < ? LIMIT 1";
+                    "from applicants a " +
+                    "left join applicantpreferences p on a.id = p.applicationId " +
+                    "left join applicationdetails d on a.id = d.applicationId " +
+                    "where a.createdAt < ? limit 1";
             int rowsMoved = jdbcTemplate.update(moveSql, thirtySecondsAgo);
             System.out.println("Rows moved to deletedApplicants: " + rowsMoved);
 
-            String deleteSql = "DELETE FROM applicants WHERE createdAt < ? LIMIT 1";
+            String deleteSql = "delete from applicants where createdAt < ? limit 1";
             int rowsDeleted = jdbcTemplate.update(deleteSql, thirtySecondsAgo);
             System.out.println("Rows deleted from applicants: " + rowsDeleted);
 

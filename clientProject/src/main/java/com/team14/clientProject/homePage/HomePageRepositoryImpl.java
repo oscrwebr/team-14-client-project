@@ -39,19 +39,19 @@ public class HomePageRepositoryImpl implements HomePageRepository {
     @Override
     public List<Applicants> get10MostRecentProfiles() {
         String sql =
-                "SELECT * " +
-                "FROM applicants " +
-                "ORDER BY createdAt " +
-                "DESC LIMIT 10";
+                "select * " +
+                "from applicants " +
+                "order by createdAt " +
+                "desc limit 10";
         return jdbc.query(sql, ApplicantRowMapper);
     }
 
     @Override
     public Applicants getApplicantById(int id) {
         String sql =
-                "SELECT * " +
-                "FROM applicants " +
-                "WHERE id = ?";
+                "select * " +
+                "from applicants " +
+                "where id = ?";
         return jdbc.queryForObject(sql, ApplicantRowMapper, id);
     }
 

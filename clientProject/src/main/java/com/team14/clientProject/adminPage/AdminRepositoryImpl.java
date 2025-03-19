@@ -35,13 +35,13 @@ public class AdminRepositoryImpl implements AdminRepository {
 
     @Override
     public List<User> findAllUsers() {
-        String sql = "SELECT * FROM users";
+        String sql = "select * from users";
         return jdbcTemplate.query(sql, userMapper);
     }
 
     @Override
     public User findUserById(int id) {
-        String sql = "SELECT * FROM users WHERE ID = ?";
+        String sql = "select * from users where id = ?";
         try {
             return jdbcTemplate.queryForObject(sql, userMapper, id);
         } catch (EmptyResultDataAccessException e) {
@@ -51,13 +51,13 @@ public class AdminRepositoryImpl implements AdminRepository {
 
     @Override
     public User addUser(User user) {
-        String checkQuery = "SELECT COUNT(*) FROM users WHERE username = ?";
+        String checkQuery = "select count(*) from users where username = ?";
         Integer count = jdbcTemplate.queryForObject(checkQuery, Integer.class, user.getUsername());
         if (count > 0) {
             throw new IllegalArgumentException("A user with this username already exists");
         }
 
-        String insertQuery = "INSERT INTO users (username, passwordHashed, firstName, lastName, email, role, lastLogin) VALUES (?, ?, ?, ?, ?, ?, ?)";
+        String insertQuery = "insert into (username, passwordHashed, firstName, lastName, email, role, lastLogin) values (?, ?, ?, ?, ?, ?, ?)";
         jdbcTemplate.update(insertQuery,
                 user.getUsername(),
                 user.getPassword(),
@@ -68,7 +68,7 @@ public class AdminRepositoryImpl implements AdminRepository {
                 user.getLastLogin()
         );
 
-        String getIdQuery = "SELECT ID FROM users WHERE username = ?";
+        String getIdQuery = "select id from users where username = ?";
         Integer userId = jdbcTemplate.queryForObject(getIdQuery, Integer.class, user.getUsername());
         user.setId(userId);
 
@@ -77,17 +77,17 @@ public class AdminRepositoryImpl implements AdminRepository {
 
     @Override
     public void deleteUserById(int id) {
-        String insertSql = "INSERT INTO deletedUsers (ID, username, passwordHashed, firstName, lastName, email, role, lastLogin, createdAt) " +
-                "SELECT ID, username, passwordHashed, firstName, lastName, email, role, lastLogin, createdAt FROM users WHERE ID = ?";
+        String insertSql = "insert into (ID, username, passwordHashed, firstName, lastName, email, role, lastLogin, createdAt) " +
+                "SELECT ID, username, passwordHashed, firstName, lastName, email, role, lastLogin, createdAt from users where ID = ?";
         jdbcTemplate.update(insertSql, id);
 
-        String sql = "DELETE FROM users WHERE ID = ?";
+        String sql = "delete from users where id = ?";
         jdbcTemplate.update(sql, id);
     }
 
     @Override
     public User updateUser(User user) {
-        String updateQuery = "UPDATE users SET passwordHashed = ?, firstName = ?, lastName = ?, email = ?, role = ?, lastLogin = ? WHERE ID = ?";
+        String updateQuery = "update users set passwordHashed = ?, firstName = ?, lastName = ?, email = ?, role = ?, lastLogin = ? where id = ?";
         jdbcTemplate.update(updateQuery,
                 user.getPassword(),
                 user.getFirstName(),
@@ -102,7 +102,7 @@ public class AdminRepositoryImpl implements AdminRepository {
 
     @Override
     public User getUserByEmail(String email) {
-        String sql = "SELECT * FROM users WHERE email = ?";
+        String sql = "select * from users where email = ?";
         try {
             return jdbcTemplate.queryForObject(sql, userMapper, email);
         } catch (EmptyResultDataAccessException e) {
@@ -112,13 +112,13 @@ public class AdminRepositoryImpl implements AdminRepository {
 
     @Override
     public void invalidateResetTokensByEmail(String email) {
-        String deleteQuery = "DELETE FROM reset_tokens WHERE email = ?";
+        String deleteQuery = "delete from reset_tokens where email = ?";
         jdbcTemplate.update(deleteQuery, email);
     }
 
     @Override
     public void saveResetToken(String email, String token) {
-        String insertQuery = "INSERT INTO reset_tokens (email, token, expiration) VALUES (?, ?, ?)";
+        String insertQuery = "insert into reset_tokens (email, token, expiration) values (?, ?, ?)";
         jdbcTemplate.update(insertQuery, email, token, LocalDateTime.now().plusHours(1));
     }
 }

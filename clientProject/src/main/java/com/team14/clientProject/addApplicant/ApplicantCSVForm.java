@@ -28,21 +28,21 @@ public class ApplicantCSVForm {
     private String eventAttended;
     @CsvBindByName (column = "skill")
     private String skill;
-    @CsvBindByName (column = "SubscribeToNewsletter")
+    @CsvBindByName (column = "subscribeToNewsletter")
     private String subscribeToNewsletter;
-    @CsvBindByName (column = "SubscribeToBulletins")
+    @CsvBindByName (column = "subscribeToBulletins")
     private String subscribeToBulletins;
-    @CsvBindByName (column = "SubscribeToJobUpdates")
+    @CsvBindByName (column = "subscribeToJobUpdates")
     private String subscribeToJobUpdates;
     @CsvBindByName (column = "currentPosition")
     private String currentPosition;
     @CsvBindByName (column = "status")
     private String status;
     @Null
-    @CsvBindByName (column = "CvPath")
+    @CsvBindByName (column = "cvPath")
     private String cvPath;
     @Null
-    @CsvBindByName (column = "CoverLetterPath")
+    @CsvBindByName (column = "coverLetterPath")
     private String coverLetterPath;
 
 }

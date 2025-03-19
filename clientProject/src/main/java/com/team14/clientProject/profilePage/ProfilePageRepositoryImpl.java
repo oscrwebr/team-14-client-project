@@ -56,11 +56,11 @@ public class ProfilePageRepositoryImpl implements ProfilePageRepository {
 
     @Override
     public List<Profile> getProfiles(){
-        String sql =  "SELECT a.*, p.SubscribeToNewsLetter, p.SubscribeToBulletins, p.SubscribeToJobUpdates," +
+        String sql =  "select a.*, p.subscribeToNewsLetter, p.subscribeToBulletins, p.subscribeToJobUpdates," +
                 "d.currentPosition, d.status " +
-                "FROM applicants a " +
-                "LEFT JOIN applicantpreferences p ON a.Id = p.Id " +
-                "LEFT JOIN applicationdetails d ON a.Id = d.Id";
+                "from applicants a " +
+                "left join applicantpreferences p on a.id = p.id " +
+                "left join applicationdetails d on a.id = d.id";
 
         return jdbcTemplate.query(sql, ProfileRowMapper);
     }
@@ -68,12 +68,12 @@ public class ProfilePageRepositoryImpl implements ProfilePageRepository {
     @Override
     public Profile getProfileById(int id) {
         // SQL query to fetch profile and preferences for a specific applicant
-        String sql = "SELECT a.*, p.SubscribeToNewsLetter, p.SubscribeToBulletins, p.SubscribeToJobUpdates," +
+        String sql = "select a.*, p.subscribeToNewsLetter, p.subscribeToBulletins, p.subscribeToJobUpdates," +
                 "d.currentPosition, d.status " +
-                "FROM applicants a " +
-                "LEFT JOIN applicantpreferences p ON a.Id = p.Id " +
-                "LEFT JOIN applicationdetails d ON a.Id = d.Id " +
-                "WHERE a.id = ?";
+                "from applicants a " +
+                "left join applicantpreferences p on a.id = p.id " +
+                "left join applicationdetails d on a.id = d.id" +
+                "where a.id = ?";
         return jdbcTemplate.queryForObject(sql, ProfileRowMapper, id);
     }
     public void addProfile(Profile profile) {
@@ -82,67 +82,67 @@ public class ProfilePageRepositoryImpl implements ProfilePageRepository {
     }
     @Override
     public List<Profile> getProfilesByFirstNameAscending() {
-        String sql = "SELECT a.*, p.SubscribeToNewsLetter, p.SubscribeToBulletins, p.SubscribeToJobUpdates," +
+        String sql = "select a.*, p.subscribeToNewsLetter, p.subscribeToBulletins, p.subscribeToJobUpdates," +
                 "d.currentPosition, d.status " +
-                "FROM applicants a " +
-                "LEFT JOIN applicantpreferences p ON a.Id = p.Id " +
-                "LEFT JOIN applicationdetails d ON a.Id = d.Id " +
-                "ORDER BY a.firstName ASC";
+                "from applicants a " +
+                "left join applicantpreferences p on a.id = p.id " +
+                "left join applicationdetails d on a.id = d.id" +
+                "order by a.firstName asc";
         return jdbcTemplate.query(sql, ProfileRowMapper);
     }
     @Override
     public List<Profile> getProfilesByFirstNameDescending() {
-        String sql = "SELECT a.*, p.SubscribeToNewsLetter, p.SubscribeToBulletins, p.SubscribeToJobUpdates," +
-                "d.currentPosition, d.status " +
-                "FROM applicants a " +
-                "LEFT JOIN applicantpreferences p ON a.Id = p.Id " +
-                "LEFT JOIN applicationdetails d ON a.Id = d.Id " +
-                "ORDER BY a.firstName DESC";
+        String sql = "select a.*, p.subscribeToNewsLetter, p.subscribeToBulletins, p.subscribeToJobUpdates," +
+        "d.currentPosition, d.status " +
+                "from applicants a " +
+                "left join applicantpreferences p on a.id = p.id " +
+                "left join applicationdetails d on a.id = d.id" +
+                "order by a.firstName desc";
         return jdbcTemplate.query(sql, ProfileRowMapper);
     }
     @Override
     public List<Profile> getProfilesByLastNameAscending() {
-        String sql = "SELECT a.*, p.SubscribeToNewsLetter, p.SubscribeToBulletins, p.SubscribeToJobUpdates," +
+        String sql = "select a.*, p.subscribeToNewsLetter, p.subscribeToBulletins, p.subscribeToJobUpdates," +
                 "d.currentPosition, d.status " +
-                "FROM applicants a " +
-                "LEFT JOIN applicantpreferences p ON a.Id = p.Id " +
-                "LEFT JOIN applicationdetails d ON a.Id = d.Id " +
-                "ORDER BY a.lastName ASC";
+                "from applicants a " +
+                "left join applicantpreferences p on a.id = p.id " +
+                "left join applicationdetails d on a.id = d.id" +
+                "order by a.lastName asc";
         return jdbcTemplate.query(sql, ProfileRowMapper);
     }
     @Override
     public List<Profile> getProfilesByLastNameDescending() {
-        String sql = "SELECT a.*, p.SubscribeToNewsLetter, p.SubscribeToBulletins, p.SubscribeToJobUpdates," +
+        String sql = "select a.*, p.subscribeToNewsLetter, p.subscribeToBulletins, p.subscribeToJobUpdates," +
                 "d.currentPosition, d.status " +
-                "FROM applicants a " +
-                "LEFT JOIN applicantpreferences p ON a.Id = p.Id " +
-                "LEFT JOIN applicationdetails d ON a.Id = d.Id " +
-                "ORDER BY a.lastName DESC";
+                "from applicants a " +
+                "left join applicantpreferences p on a.id = p.id " +
+                "left join applicationdetails d on a.id = d.id" +
+                "order by a.lastName desc";
         return jdbcTemplate.query(sql, ProfileRowMapper);
     }
     public List<Profile> getProfilesByUniqueLocation() {
-        String sql = "SELECT a.*, p.SubscribeToNewsLetter, p.SubscribeToBulletins, p.SubscribeToJobUpdates," +
+        String sql = "select a.*, p.aubscribeToNewsLetter, p.subscribeToBulletins, p.subscribeToJobUpdates," +
                 "d.currentPosition, d.status " +
-                "FROM applicants a " +
-                "LEFT JOIN applicantpreferences p ON a.Id = p.Id " +
-                "LEFT JOIN applicationdetails d ON a.Id = d.Id " +
-                "GROUP BY a.location";
+                "from applicants a " +
+                "left join applicantpreferences p on a.id = p.id " +
+                "left join applicationdetails d on a.id = d.id " +
+                "group by a.location";
         return jdbcTemplate.query(sql, ProfileRowMapper);
     }
     public List<Profile> getProfilesByUniqueEvent() {
-        String sql = "SELECT a.*, p.SubscribeToNewsLetter, p.SubscribeToBulletins, p.SubscribeToJobUpdates," +
+        String sql = "select a.*, p.aubscribeToNewsLetter, p.subscribeToBulletins, p.subscribeToJobUpdates," +
                 "d.currentPosition, d.status " +
-                "FROM applicants a " +
-                "LEFT JOIN applicantpreferences p ON a.Id = p.Id " +
-                "LEFT JOIN applicationdetails d ON a.Id = d.Id " +
-                "GROUP BY a.eventAttended";
+                "from applicants a " +
+                "left join applicantpreferences p on a.id = p.id " +
+                "left join applicationdetails d on a.id = d.id " +
+                "group by a.eventAttended";
         return jdbcTemplate.query(sql, ProfileRowMapper);
     }
     public List<String> getUniqueSkills() {
-        String sql = "SELECT DISTINCT TRIM(SUBSTRING_INDEX(SUBSTRING_INDEX(a.skill, ',', numbers.n), ',', -1)) AS skill " +
-                "FROM applicants a " +
-                "JOIN (SELECT 1 n UNION ALL SELECT 2 UNION ALL SELECT 3 UNION ALL SELECT 4 UNION ALL SELECT 5 UNION ALL SELECT 6 UNION ALL SELECT 7 UNION ALL SELECT 8 UNION ALL SELECT 9 UNION ALL SELECT 10) numbers " +
-                "ON CHAR_LENGTH(a.skill) - CHAR_LENGTH(REPLACE(a.skill, ',', '')) >= numbers.n - 1 " +
+        String sql = "select distinct trim(substring_index(substring_index(a.skill, ',', numbers.n), ',', -1)) as skill " +
+                "from applicants a " +
+                "join (select 1 n union all select 2 union all select 3 union all select 4 union all select 5 union all select 6 union all select 7 union all select 8 union all select 9 union all select 10) numbers " +
+                "on char_length(a.skill) - char_length(replace(a.skill, ',', '')) >= numbers.n - 1 " +
                 "ORDER BY skill";
         return jdbcTemplate.queryForList(sql, String.class);
     }
@@ -150,29 +150,29 @@ public class ProfilePageRepositoryImpl implements ProfilePageRepository {
 
 
     public void updateCvPath(int userId, byte[] cvPath) {
-        String sql = "UPDATE applicationdetails SET cvPath = ? WHERE id = ?";
+        String sql = "update applicationdetails set cvPath = ? where id = ?";
         jdbcTemplate.update(sql, cvPath, userId);
     }
 
     public byte[] getCvPath(int userId) {
-        String sql = "SELECT cvPath FROM applicationdetails WHERE id = ?";
+        String sql = "select cvPath from applicationdetails where id = ?";
         return jdbcTemplate.queryForObject(sql, byte[].class, userId);
     }
 
     public List<Profile> searchProfiles(String query) {
-        String sql = "SELECT a.*, p.SubscribeToNewsLetter, p.SubscribeToBulletins, p.SubscribeToJobUpdates, " +
+        String sql = "select a.*, p.subscribeToNewsLetter, p.subscribeToBulletins, p.subscribeToJobUpdates, " +
                 "d.currentPosition, d.status " +
-                "FROM applicants a " +
-                "LEFT JOIN applicantpreferences p ON a.Id = p.Id " +
-                "LEFT JOIN applicationdetails d ON a.Id = d.Id " +
-                "WHERE a.firstName LIKE ? OR a.lastName LIKE ? OR a.location LIKE ? OR a.skill LIKE ? OR a.eventAttended LIKE ? OR d.currentPosition LIKE ?";
+                "from applicants a " +
+                "left join applicantpreferences p on a.id = p.id " +
+                "left join applicationdetails d on a.id = d.id " +
+                "where a.firstName like ? or a.lastName like ? or a.location like ? or a.skill like ? or a.eventAttended like ? or d.currentPosition like ?";
         String searchQuery = "%" + query + "%";
         return jdbcTemplate.query(sql, new Object[]{searchQuery, searchQuery, searchQuery, searchQuery, searchQuery, searchQuery}, ProfileRowMapper);
     }
 
     @Override
     public void updateProfile(Profile profile) {
-        String sql = "UPDATE applicants SET firstName = ?, lastName = ?, location = ?, email = ?, phoneNumber = ?, eventAttended = ?, skill = ? WHERE id = ?";
+        String sql = "update applicants set firstName = ?, lastName = ?, location = ?, email = ?, phoneNumber = ?, eventAttended = ?, skill = ? where id = ?";
         jdbcTemplate.update(sql,
                 profile.getFirstName(),
                 profile.getLastName(),
@@ -183,10 +183,10 @@ public class ProfilePageRepositoryImpl implements ProfilePageRepository {
                 profile.getSkill(),
                 profile.getId());
 
-        String jobDetailsSql = "UPDATE applicationdetails SET currentPosition = ?, status = ? WHERE id = ?";
+        String jobDetailsSql = "update applicationdetails set currentPosition = ?, status = ? where id = ?";
         jdbcTemplate.update(jobDetailsSql, profile.getJobDetails().getCurrentPosition(), profile.getJobDetails().getStatus(), profile.getId());
 
-        String preferencesSql = "UPDATE applicantPreferences SET SubscribeToNewsLetter = ?, SubscribeToBulletins = ?, SubscribeToJobUpdates = ? WHERE applicationId = ?";
+        String preferencesSql = "update applicantPreferences set subscribeToNewsLetter = ?, subscribeToBulletins = ?, subscribeToJobUpdates = ? where applicationId = ?";
         jdbcTemplate.update(preferencesSql,
                 profile.getPreferences().isSubscribeToNewsletter() ? "Yes" : "No",
                 profile.getPreferences().isSubscribeToBulletins() ? "Yes" : "No",
@@ -195,26 +195,25 @@ public class ProfilePageRepositoryImpl implements ProfilePageRepository {
     }
 
     public void deleteProfile(int id) {
-        String insertSql = "INSERT INTO deletedApplicants (id, firstName, lastName, location, email, phoneNumber, currentPosition, status, skill, eventAttended, SubscribeToNewsLetter, SubscribeToBulletins, SubscribeToJobUpdates) " +
-                "SELECT a.id, a.firstName, a.lastName, a.location, a.email, a.phoneNumber, " +
+        String insertSql = "insert into deletedApplicants (id, firstName, lastName, location, email, phoneNumber, currentPosition, status, skill, eventAttended, subscribeToNewsLetter, subscribeToBulletins, subscribeToJobUpdates) " +
+                "select a.id, a.firstName, a.lastName, a.location, a.email, a.phoneNumber, " +
                 "d.currentPosition, d.status, a.skill, a.eventAttended, " +
-                "p.SubscribeToNewsLetter, p.SubscribeToBulletins, p.SubscribeToJobUpdates " +
-                "FROM applicants a " +
-                "LEFT JOIN applicantpreferences p ON a.Id = p.applicationId " +
-                "LEFT JOIN applicationdetails d ON a.Id = d.applicationId " +
-                "WHERE a.id = ?";
+                "p.subscribeToNewsLetter, p.subscribeToBulletins, p.subscribeToJobUpdates " +
+                "from applicants a " +
+                "left join applicantpreferences p ON a.id = p.applicationId " +
+                "left join applicationdetails d ON a.id = d.applicationId " +
+                "where a.id = ?";
         jdbcTemplate.update(insertSql, id);
 
-        String sql = "DELETE FROM applicants WHERE id = ?";
+        String sql = "delete from applicants where id = ?";
         jdbcTemplate.update(sql, id);
     }
 
     public List<String> getSubscribedEmails(){
-        String sql = "SELECT a.email " +
-                "FROM applicants a " +
-                "JOIN applicantpreferences p ON a.Id = p.Id " +
-                "WHERE p.SubscribeToNewsLetter = 'yes'";
-
+        String sql = "select a.email " +
+                "from applicants a " +
+                "join applicantpreferences p on a.id = p.id " +
+                "where p.subscribeToNewsLetter = 'yes'";
         return jdbcTemplate.query(sql,(rs, rowNum) -> rs.getString("email"));
     }
 

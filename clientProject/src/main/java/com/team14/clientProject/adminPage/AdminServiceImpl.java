@@ -60,20 +60,20 @@ public class AdminServiceImpl implements AdminService {
 
     @Override
     public void saveResetToken(String email, String token) {
-        String insertQuery = "INSERT INTO reset_tokens (email, token, expiration) VALUES (?, ?, ?)";
+        String insertQuery = "insert into reset_tokens (email, token, expiration) values (?, ?, ?)";
         jdbcTemplate.update(insertQuery, email, token, LocalDateTime.now().plusHours(1));
     }
 
     @Override
     public boolean isResetTokenValid(String token) {
-        String query = "SELECT COUNT(*) FROM reset_tokens WHERE token = ? AND expiration > ?";
+        String query = "select count(*) from reset_tokens where token = ? and expiration > ?";
         Integer count = jdbcTemplate.queryForObject(query, Integer.class, token, LocalDateTime.now());
         return count != null && count > 0;
     }
 
     @Override
     public String getEmailByResetToken(String token) {
-        String query = "SELECT email FROM reset_tokens WHERE token = ?";
+        String query = "select email from reset_tokens where token = ?";
         try {
             return jdbcTemplate.queryForObject(query, String.class, token);
         } catch (EmptyResultDataAccessException e) {
@@ -83,7 +83,7 @@ public class AdminServiceImpl implements AdminService {
 
     @Override
     public void invalidateResetToken(String token) {
-        String deleteQuery = "DELETE FROM reset_tokens WHERE token = ?";
+        String deleteQuery = "delete from reset_tokens where token = ?";
         jdbcTemplate.update(deleteQuery, token);
     }
 

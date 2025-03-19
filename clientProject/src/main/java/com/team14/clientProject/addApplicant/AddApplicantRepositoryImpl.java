@@ -47,9 +47,9 @@ public class AddApplicantRepositoryImpl implements AddApplicantRepository {
 
     public Integer emailValidation(AddApplicantForm applicants) {
         String emailValidation =
-                "SELECT COUNT(*) " +
-                "FROM applicants " +
-                "WHERE email = ?";
+                "select count(*) " +
+                "from applicants " +
+                "where email = ?";
 
         Integer queryResultEmail = jdbcTemplate.queryForObject(emailValidation, Integer.class, applicants.getEmail());
         return queryResultEmail;
@@ -57,17 +57,17 @@ public class AddApplicantRepositoryImpl implements AddApplicantRepository {
 
     public Integer phoneNoValidation(AddApplicantForm applicants) {
         String phoneNoValidation =
-                "SELECT COUNT(*) " +
-                "FROM applicants " +
-                "WHERE phoneNumber = ?";
+                "select count(*) " +
+                "from applicants " +
+                "where phoneNumber = ?";
         Integer queryResultPhone = jdbcTemplate.queryForObject(phoneNoValidation, Integer.class, applicants.getPhoneNumber());
         return queryResultPhone;
     }
 
     public Integer getApplicantCount() {
         String sql =
-                "SELECT COUNT(*) " +
-                "FROM " +
+                "select count(*) " +
+                "from " +
                 "applicants";
         return jdbcTemplate.queryForObject(sql, Integer.class);
     }
@@ -76,9 +76,9 @@ public class AddApplicantRepositoryImpl implements AddApplicantRepository {
 
         // Insert query for the form data
         String sql =
-                "INSERT INTO applicants" +
+                "insert into applicants" +
                 "(firstName, lastName, location, email, phoneNumber, eventAttended, skill) " +
-                "VALUES (?, ?, ?, ?, ?, ?, ?)";
+                "values (?, ?, ?, ?, ?, ?, ?)";
 
         // Values for the query
         jdbcTemplate.update(sql,
@@ -95,7 +95,7 @@ public class AddApplicantRepositoryImpl implements AddApplicantRepository {
     }
 
     public Integer getRecentId() {
-        String fetchId = "SELECT LAST_INSERT_ID()";
+        String fetchId = "select LAST_INSERT_ID()";
         Integer id = jdbcTemplate.queryForObject(fetchId, Integer.class);
         return id;
     }
@@ -103,9 +103,9 @@ public class AddApplicantRepositoryImpl implements AddApplicantRepository {
 
     public void addApplicantFromCsv(Applicant applicant) {
         String sql =
-                "INSERT INTO applicants" +
+                "insert into applicants" +
                 "(firstName, lastName, location, email, phoneNumber, eventAttended, skill) " +
-                "VALUES (?, ?, ?, ?, ?, ?, ?)";
+                "values (?, ?, ?, ?, ?, ?, ?)";
 
 //        String fetchId = "SELECT id FROM applicants WHERE email = ?";
 
@@ -126,9 +126,9 @@ public class AddApplicantRepositoryImpl implements AddApplicantRepository {
 
     public void addApplicantPreferencesFromCsv(ApplicantPreferences applicantPreferences, Integer id) {
         String sql =
-                "INSERT INTO applicantpreferences" +
+                "insert into applicantpreferences" +
                 "(applicationId, SubscribeToNewsLetter, SubscribeToBulletins, SubscribeToJobUpdates) " +
-                "VALUES (?, ?, ?, ?)";
+                "values (?, ?, ?, ?)";
         jdbcTemplate.update(sql,
                 id,
                 applicantPreferences.getSubscribeToNewsletter(),
@@ -139,9 +139,9 @@ public class AddApplicantRepositoryImpl implements AddApplicantRepository {
 
     public void addApplicantDetailsFromCsv(ApplicantDetails applicantDetails, Integer id) {
         String sql =
-                "INSERT INTO applicationdetails" +
+                "insert into applicationdetails" +
                 "(applicationId, currentPosition, status, CvPath, CoverLetterPath) " +
-                "VALUES (?, ?, ?, ?, ?)";
+                "values (?, ?, ?, ?, ?)";
         jdbcTemplate.update(sql,
                 id,
                 applicantDetails.getCurrentPosition(),

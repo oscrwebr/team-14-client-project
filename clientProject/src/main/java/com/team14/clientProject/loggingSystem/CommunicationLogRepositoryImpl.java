@@ -30,7 +30,7 @@ public class CommunicationLogRepositoryImpl implements CommunicationLogRepositor
     }
     @Override
     public List<CommunicationLog> getLogs(){
-        String sql = "SELECT * FROM communicationlogs ORDER BY timestamp DESC";
+        String sql = "select * from communicationlogs order by timestamp desc";
         return jdbcTemplate.query(sql, CommunicationLogMapper);
     }
 
@@ -38,30 +38,30 @@ public class CommunicationLogRepositoryImpl implements CommunicationLogRepositor
     public void addEmailLog(List<String> thisApplicantId, String emailContent){
         for (String applicantId : thisApplicantId) {
             int applicantIdInt = Integer.parseInt(applicantId);
-            String sql = "INSERT INTO communicationlogs (applicantId, actionTaken, notes) VALUES (?, 'emailSent', ?)";
+            String sql = "insert into communicationlogs (applicantId, actionTaken, notes) values (?, 'emailSent', ?)";
             jdbcTemplate.update(sql, applicantIdInt, emailContent);
         }
     }
     @Override
     public void addApplicantLog(){
-        String sql = "INSERT INTO communicationLogs (applicantId, actionTaken, notes) VALUES ((SELECT Max(Id) FROM applicants), 'applicantAdded', 'Applicant added to the system')";
+        String sql = "insert into communicationLogs (applicantId, actionTaken, notes) values ((select max(id) from applicants), 'applicantAdded', 'Applicant added to the system')";
         jdbcTemplate.update(sql);
     }
 
     @Override
     public List<CommunicationLog> getLogsByApplicantId(int applicantId){
-        String sql = "SELECT DISTINCT * FROM communicationlogs WHERE applicantId LIKE ? ORDER BY timestamp DESC";
+        String sql = "select distinct * from communicationlogs where applicantId like ? order by timestamp desc";
         return jdbcTemplate.query(sql, CommunicationLogMapper, applicantId);
     }
 
     @Override
     public void editApplicantLog(int applicantId){
-        String sql = "INSERT INTO communicationLogs (applicantId, actionTaken, notes) VALUES (?, 'applicantDetailsChanged', 'Applicant details edited')";
+        String sql = "insert into communicationLogs (applicantId, actionTaken, notes) values (?, 'applicantDetailsChanged', 'Applicant details edited')";
         jdbcTemplate.update(sql, applicantId);
     }
     @Override
     public void deleteApplicantLog(int applicantId){
-        String sql = "INSERT INTO communicationLogs (applicantId, actionTaken, notes) VALUES (?, 'applicantRemoved', 'Applicant deleted from the system')";
+        String sql = "insert into communicationLogs (applicantId, actionTaken, notes) values (?, 'applicantRemoved', 'Applicant deleted from the system')";
         jdbcTemplate.update(sql, applicantId);
     }
 

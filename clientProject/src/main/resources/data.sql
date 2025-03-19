@@ -107,7 +107,7 @@ values
     ('Victoria', 'Coleman', 'Merthyr Tydfil', 'victoria.coleman@example.com', '9899890127', 'Healthcare Careers Fair', 'Nursing, Radiology');
 
 -- Populate the Applicant Preferences table with sample data
-insert into applicantPreferences (applicationId, SubscribeToNewsLetter, SubscribeToBulletins, SubscribeToJobUpdates)
+insert into applicantPreferences (applicationId, subscribeToNewsLetter, subscribeToBulletins, subscribeToJobUpdates)
 values
     (1, 'no', 'no', 'yes'),
     (2, 'yes', 'yes', 'no'),
@@ -198,7 +198,7 @@ values
     (87, 'no', 'yes', 'yes');
 
 -- Populate the Application Details table
-insert into applicationdetails(applicationId, currentPosition, status, CvPath, CoverLetterPath)
+insert into applicationdetails(applicationId, currentPosition, status, cvPath, coverLetterPath)
 values
     (1, 'Nurse', 'External', NULL, NULL),
     (2, 'Public Health Analyst', 'External', NULL, NULL),

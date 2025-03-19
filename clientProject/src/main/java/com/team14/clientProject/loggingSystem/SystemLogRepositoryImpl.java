@@ -28,19 +28,19 @@ public class SystemLogRepositoryImpl implements SystemLogRepository {
 
     @Override
     public List<SystemLog> getLogs() {
-        String sql = "SELECT * FROM systemLogs ORDER BY timestamp DESC";
+        String sql = "select * from systemLogs order by timestamp desc";
         return jdbcTemplate.query(sql, SystemLogMapper);
     }
 
     @Override
     public void addUserLog() {
-        String sql = "INSERT INTO systemLogs (userId, actionTaken) VALUES ((SELECT MAX(ID) FROM users), 'addedUser')";
+        String sql = "insert into systemLogs (userId, actionTaken) values ((select max(id) from users), 'addedUser')";
         jdbcTemplate.update(sql);
     }
 
     @Override
-    public void removeUserLog(int UserID) {
-        String sql = "INSERT INTO systemLogs (userId, actionTaken) VALUES (?, 'removedUser')";
-        jdbcTemplate.update(sql, UserID);
+    public void removeUserLog(int userID) {
+        String sql = "insert into systemLogs (userId, actionTaken) values (?, 'removedUser')";
+        jdbcTemplate.update(sql, userID);
     }
 }
