@@ -39,11 +39,11 @@ public class CustomLogInterceptor implements HandlerInterceptor {
     public void afterCompletion(HttpServletRequest request, HttpServletResponse response, Object handler, Exception ex) throws Exception {
         String requestURI = request.getRequestURI();
         String requestMethod = request.getMethod();
-        String requestUser = "server";
+        String requestUser = "admin";
         try {
             requestUser = request.getUserPrincipal().getName();
         } catch (Exception e) {
-            throw e;
+            requestUser="admin";
         }
         String requestType = "API";
         String requestAction = "Response";

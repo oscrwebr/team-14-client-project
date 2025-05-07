@@ -43,6 +43,19 @@ public class CommunicationLogRepositoryImpl implements CommunicationLogRepositor
             jdbcTemplate.update(sql, getUserIdFromUsername(SecurityConfig.getCurrentUserId()), applicantIdInt, emailContent);
         }
     }
+
+    @Override
+    public void addBatchEmailLog(List<String> thisApplicantId, String emailContent){
+        String sql = "INSERT INTO communicationLogs (userId, applicantId, actionTaken, notes) VALUES (?,?, 'emailSent', ?)";
+        int userId = getUserIdFromUsername(SecurityConfig.getCurrentUserId());
+        jdbcTemplate.batchUpdate(sql, thisApplicantId, thisApplicantId.size(), (ps, applicantId) -> {
+            int applicantIdInt = Integer.parseInt(applicantId);
+            ps.setInt(1, userId);
+            ps.setInt(2, applicantIdInt);
+            ps.setString(3, emailContent);
+        });
+    }
+
     @Override
     public void addApplicantLog(){
         String sql = "INSERT INTO communicationLogs (userId, applicantId, actionTaken, notes) VALUES (?, (SELECT Max(Id) FROM applicants), 'applicantAdded', 'Applicant added to the system')";

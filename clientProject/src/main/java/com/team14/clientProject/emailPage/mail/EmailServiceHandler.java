@@ -6,6 +6,7 @@ import com.team14.clientProject.profilePage.Profile;
 import com.team14.clientProject.profilePage.ProfilePageRepository;
 import jakarta.mail.MessagingException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -70,5 +71,6 @@ public class EmailServiceHandler {
             sendNewsletterEmail(email, subject, htmlBody, pdfAttachment);
         }
     }
+
 
 }

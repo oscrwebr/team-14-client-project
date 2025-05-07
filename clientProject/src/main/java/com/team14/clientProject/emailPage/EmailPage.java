@@ -1,5 +1,6 @@
 package com.team14.clientProject.emailPage;
 
+import com.team14.clientProject.emailPage.mail.ConcurrentEmailServiceHandler;
 import com.team14.clientProject.emailPage.mail.EmailServiceHandler;
 import com.team14.clientProject.loggingSystem.CommunicationLogRepositoryImpl;
 import com.team14.clientProject.profilePage.Profile;
@@ -26,6 +27,9 @@ public class EmailPage {
 
     @Autowired
     private EmailServiceHandler emailServiceHandler;
+
+    @Autowired
+    private ConcurrentEmailServiceHandler concurrentEmailServiceHandler;
 
     @Autowired
     private JdbcTemplate jdbcTemplate;
@@ -71,6 +75,21 @@ public class EmailPage {
         modelAndView.addObject("alertMessage", alertMessage);
         modelAndView.addObject("profileList", this.profileList);
         this.CommunicationLogRepository.addEmailLog(emailIds, subject);
+        return modelAndView;
+    }
+
+    @PostMapping("/sendEmailsConcurrently")
+    public ModelAndView sendEmailsConcurrently(@RequestParam("emailIds") List<String> emailIds) {
+        ModelAndView modelAndView = new ModelAndView("email/selector");
+        String subject = "Test Subject to Your Multiple Emails";
+        String htmlBody = "<html><body><h1>An email has been sent to multiple email addresses.</h1><img src='/images/NhsWales.JPEG'></body></html>";
+        String logoPath = "";
+
+        // Send emails and get alert messages
+        String alertMessage = concurrentEmailServiceHandler.sendEmails(emailIds, subject, htmlBody, logoPath);
+        modelAndView.addObject("alertMessage", alertMessage);
+        modelAndView.addObject("profileList", this.profileList);
+        this.CommunicationLogRepository.addBatchEmailLog(emailIds, subject);
         return modelAndView;
     }
 
